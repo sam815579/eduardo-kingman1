@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad Educativa Eduardo Kingman Riofrío</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+html {
+    scroll-behavior: smooth;
+}
+/* Ajuste para que el header no tape el título al bajar */
+section {
+    scroll-margin-top: 100px; 
+}
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+color: #333;
+overflow-x: hidden;
+line-height: 1.6;
+}
+
+/* VARIABLES */
+:root {
+--azul: #1E3A8A;
+--azul-claro: #90D5FF;
+--azul-principal: #2563EB;
+--rojo: #DC2626;
+--rojo-oscuro: #991B1B;
+--verde-principal: #22C55E;
+--verde-claro: #86EFAC;
+--gris: #f5f5f5;
+--gris-claro: #F3F4F6;
+--gris-texto: #4B5563;
+--gris-oscuro: #1F2937;
+--blanco: #FFFFFF;
+--naranja: #F97316;
+}
+
+/* ================= HEADER NUEVO ================= */
+.main-header {
+position: absolute;
+top: 0;
+width: 100%;
+z-index: 1000;
+}
+
+.header-container {
+display: flex;
+align-items: center;
+justify-content: flex-start;
+max-width: 1400px;
+margin: 0 auto;
+padding: -10rem;
+}
+
+/* LOGO */
+.logo-box {
+background: var(--blanco);
+padding: 20px 30px;
+display: flex;
+align-items: center;
+gap: 15px;
+border-radius: 0 60px 60px 0;
+box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.logo-box img {
+width: 70px;
+height: 70px;
+object-fit: contain;
+}
+
+.logo-text {
+font-weight: 800;
+color: var(--rojo);
+font-size: 20px;
+line-height: 1.2;
+text-transform: uppercase;
+}
+
+/* NAV AREA */
+.nav-area {
+flex: 1;
+display: flex;
+flex-direction: column;
+align-items: flex-start;  
+}
+
+
+.top-bar {
+background: transparent;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+gap: 1.5rem;
+margin-right: 1rem;
+margin-left: auto; /* ← AGREGA ESTA LÍNEA */
+}
+
+.top-bar a {
+color: white;
+text-decoration: none;
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 6px;
+transition: color 0.7s;
+}
+
+.top-bar a:hover {
+color: var(--azul-claro);
+}
+
+.top-bar .fab {
+font-size: 1.1rem;
+}
+
+.btn-contact {
+background: var(--rojo);
+padding: 8px 18px;
+border-radius: 30px;
+color: white;
+font-weight: 600;
+transition: all 0.3s;
+}
+
+.btn-contact:hover {
+background: var(--blanco);
+color: var(--rojo);
+transform: translateY(-2px);
+}
+
+/* NAVBAR */
+.navbar {
+background: var(--blanco);
+padding: 10px 25px;
+border-radius: 50px;
+box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+margin-right: 0;  
+}
+.navbar ul {
+display: flex;
+list-style: none;
+gap: 8px;
+align-items: center;
+}
+
+.navbar a {
+text-decoration: none;
+color: var(--gris-oscuro);
+font-weight: 700;
+font-size: 13px;
+padding: 8px 14px;
+border-radius: 8px;
+text-transform: uppercase;
+transition: all 0.3s;
+display: inline-flex;
+align-items: center;
+gap: 4px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+background: var(--gris-claro);
+color: var(--rojo);
+}
+
+/* Dropdown */
+.dropdown {
+position: relative;
+}
+
+.dropdown-menu {
+position: absolute;
+top: 100%;
+left: 0;
+background: var(--blanco);
+min-width: 240px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+border-radius: 12px;
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: all 0.3s ease;
+margin-top: 8px;
+border: 2px solid var(--azul-claro);
+overflow: hidden;
+z-index: 9999;
+display: flex;
+flex-direction: column;
+}
+
+.dropdown:hover .dropdown-menu {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+
+.dropdown-menu a {
+padding: 12px 18px;
+color: var(--gris-oscuro);
+font-size: 14px;
+text-transform: none;
+border-bottom: 1px solid var(--gris-claro);
+}
+
+.dropdown-menu a:last-child {
+border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+background: linear-gradient(90deg, var(--azul-claro) 0%, var(--verde-claro) 100%);
+color: var(--azul);
+padding-left: 22px;
+}
+
+/* ================= HERO ================= */
+.hero {
+height: 100vh;
+position: relative;
+overflow: hidden;
+}
+
+.hero-slide {
+position: absolute;
+width: 100%;
+height: 100%;
+opacity: 0;
+transition: opacity 1.5s ease-in-out;
+}
+
+.hero-slide.active {
+opacity: 1;
+}
+
+.hero img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center center;
+display: block;
+}
+
+.hero-overlay {
+position: absolute;
+inset: 0;
+background:  transparent;
+}
+
+.hero-content {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+color: white;
+max-width: 900px;
+padding: 0 2rem;
+}
+
+.hero-content h2 {
+font-size: 28px;
+font-weight: 300;
+margin-bottom: 10px;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-content h1 {
+font-size: 60px;
+font-weight: 900;
+margin-bottom: 15px;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+line-height: 1.1;
+}
+
+.hero-content p {
+font-size: 20px;
+margin-bottom: 30px;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.btn-main {
+background: var(--rojo);
+padding: 14px 35px;
+border-radius: 40px;
+color: white;
+text-decoration: none;
+font-weight: 600;
+display: inline-block;
+transition: all 0.3s;
+box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-main:hover {
+background: var(--azul-principal);
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* SLIDER CONTROLS */
+.slider-btn {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(255,255,255,0.4);
+border: 2px solid white;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: all 0.3s;
+z-index: 10;
+}
+
+.slider-btn:hover {
+background: white;
+}
+
+.slider-btn i {
+color: white;
+font-size: 18px;
+transition: color 0.3s;
+}
+
+.slider-btn:hover i {
+color: var(--rojo);
+}
+
+.prev { left: 30px; }
+.next { right: 30px; }
+
+/* DOTS */
+.dots {
+position: absolute;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 10px;
+z-index: 10;
+}
+
+.dot {
+width: 12px;
+height: 12px;
+background: rgba(255,255,255,0.5);
+border-radius: 10px;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.dot.active {
+width: 35px;
+background: white;
+}
+
+/* ================= SECCIONES ================= */
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+}
+
+/* Misión Visión */
+.mision-vision-section {
+padding: 6rem 0;
+
+background:
+linear-gradient(
+rgba(255,255,255,0.85),
+rgba(255,255,255,0.90)
+),
+url('visision-mision.png');
+
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+}
+.mv-container {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 3rem;
+margin-bottom: 3rem;
+}
+
+.mv-card {
+background: rgba(255,255,255,0.95);
+padding: 2.5rem;
+border-radius: 20px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.12);
+
+border-left: 6px solid var(--azul-principal);
+
+backdrop-filter: blur(6px);
+
+transition: all 0.3s ease;
+}
+
+.mv-card:hover{
+transform: translateY(-8px);
+}
+
+.mv-card.vision {
+border-left-color: var(--rojo);
+}
+
+.mv-card h3 {
+font-size: 1.8rem;
+color: var(--azul);
+margin-bottom: 1.5rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.mv-card p {
+line-height: 1.8;
+text-align: justify;
+margin-bottom: 1rem;
+color: var(--gris-texto);
+}
+
+.mv-card img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+border-radius: 10px;
+margin-top: 1.5rem;
+box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Valores */
+.valores-section {
+background: rgba(255,255,255,0.96);
+padding: 3.5rem;
+
+border-radius: 20px;
+
+box-shadow:
+0 15px 40px rgba(0,0,0,0.12);
+
+border-top: 5px solid var(--verde-principal);
+}
+.acerca-section {
+    background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), 
+                url('banderines.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    padding: 4rem 0;
+    margin: 0 0 4rem 0; /* ← Cambia esto: elimina margen superior */
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.valores-section h3 {
+font-size: 2rem;
+color: var(--azul);
+margin-bottom: 2rem;
+text-align: center;
+}
+
+.valores-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.5rem;
+}
+
+.valor-item {
+
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+
+padding: 1.5rem;
+
+background: linear-gradient(
+135deg,
+#dbeafe,
+#bbf7d0
+);
+
+border-radius: 15px;
+
+transition: all 0.3s ease;
+
+box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+.valor-item:hover{
+transform: translateY(-6px);
+}
+
+.valor-icon {
+font-size: 2.5rem;
+margin-bottom: 10px;
+}
+
+.valor-item h4 {
+color: var(--azul);
+font-size: 1.1rem;
+}
+
+.btn-ver-mas {
+display: inline-block;
+margin-top: 2rem;
+padding: 1rem 3rem;
+background: linear-gradient(135deg, var(--azul-principal) 0%, var(--rojo) 100%);
+color: var(--blanco);
+text-decoration: none;
+border-radius: 50px;
+font-weight: 600;
+transition: all 0.3s;
+text-align: center;
+}
+
+.btn-card {
+display: inline-block;
+margin-top: 1.5rem;
+padding: 0.9rem 2rem;
+background: linear-gradient(135deg, var(--azul-principal) 0%, var(--rojo-principal) 100%);
+color: 0 6px 20px rgba(37,99,235,0.4); /* ¡Importante para que se vea el texto! */
+text-decoration: none;
+border-radius: 50px;
+font-weight: 600;
+transition: all 0.3s;
+text-align: center;
+box-shadow: 0 4px 15px rgba(37,99,235,0.3);
+}
+
+.btn-card:hover {
+transform: translateY(-3px);
+box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+background: linear-gradient(135deg, var(--rojo-principal) 0%, var(--azul-principal) 100%);
+}
+
+/* Metodología */
+.metodologia-niveles-section {
+padding: 5rem 0;
+background: var(--blanco);
+}
+
+.section-title {
+text-align: center;
+font-size: 2.5rem;
+color: var(--azul);
+margin-bottom: 1rem;
+}
+
+.section-subtitle {
+text-align: center;
+font-size: 1.2rem;
+color: var(--gris-texto);
+margin-bottom: 3rem;
+}
+
+.metodologia-content {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: center;
+margin-bottom: 5rem;
+}
+
+.metodologia-images {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+position: relative;
+}
+
+.metodologia-images img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+border-radius: 10px;
+box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.metodologia-logo {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100px;
+height: 100px;
+background: var(--blanco);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+z-index: 10;
+}
+
+.metodologia-logo img {
+width: 70px;
+height: 70px;
+}
+
+.metodologia-text h3 {
+font-size: 1rem;
+color: var(--azul);
+text-transform: uppercase;
+margin-bottom: 0.5rem;
+}
+
+.metodologia-text h2 {
+font-size: 2.5rem;
+color: var(--rojo);
+margin-bottom: 1rem;
+}
+
+.metodologia-text .divider {
+width: 80px;
+height: 4px;
+background: var(--azul);
+margin-bottom: 2rem;
+}
+
+.metodologia-text p {
+margin-bottom: 1.5rem;
+line-height: 1.8;
+text-align: justify;
+color: var(--gris-texto);
+}
+
+.btn-info {
+display: inline-block;
+padding: 1rem 2.5rem;
+background: var(--azul-principal);
+color: var(--blanco);
+text-decoration: none;
+border-radius: 8px;
+font-weight: 600;
+transition: all 0.3s;
+}
+
+.btn-info:hover {
+background: var(--rojo);
+transform: translateY(-2px);
+}
+
+/* Niveles */
+.niveles-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2rem;
+}
+
+.nivel-card {
+background: var(--blanco);
+padding: 2.5rem;
+border-radius: 15px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+text-align: center;
+transition: transform 0.3s;
+border-top: 4px solid var(--azul-principal);
+}
+
+.nivel-card:nth-child(2) {
+border-top-color: var(--verde-principal);
+}
+
+.nivel-card:nth-child(3) {
+border-top-color: var(--rojo);
+}
+
+.nivel-card:hover {
+transform: translateY(-10px);
+}
+
+.nivel-icon {
+font-size: 3.5rem;
+margin-bottom: 1.5rem;
+display: block;
+}
+
+.nivel-card h3 {
+font-size: 1.8rem;
+color: var(--azul);
+margin-bottom: 1rem;
+}
+
+.nivel-card p {
+line-height: 1.6;
+color: var(--gris-texto);
+}
+
+        /* Footer Profesional CON IMAGEN pie.png */
+.main-footer {
+    background: linear-gradient(135deg, rgba(30,58,138,0.95) 0%, rgba(37,99,235,0.95) 100%);
+    color: var(--blanco);
+    padding: 4rem 0 1rem;
+    position: relative;
+    overflow: hidden;
+    clear: both; /* ← AGREGA ESTO */
+    margin-top: 1rem; /* ← AGREGA ESTO */
+    z-index: 10;
+}
+
+        .main-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('pie.png') center/cover no-repeat;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .main-footer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30,58,138,0.5);
+            z-index: 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-col h4 {
+            color: var(--blanco);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--verde-claro);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--blanco);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: var(--verde-claro);
+            padding-left: 5px;
+        }
+
+        .footer-col ul li a::before {
+            content: '-';
+            color: var(--verde-claro);
+        }
+
+        .footer-col p {
+            margin-bottom: 0.75rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .footer-col i {
+            color: var(--verde-claro);
+            margin-top: 0.3rem;
+        }
+
+        /* Formulario en Footer - MÁS PEQUEÑO Y COMPACTO */
+        .footer-contacto {
+            background: var(--naranja);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .footer-contacto h4 {
+            color: var(--blanco);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-contacto h4::after {
+            display: none;
+        }
+
+        .footer-contacto p {
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .footer-form {
+            margin-top: 1rem;
+        }
+
+        .footer-form .form-group {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-form label {
+            display: block;
+            color: var(--blanco);
+            margin-bottom: 0.25rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .footer-form input,
+        .footer-form textarea,
+        .footer-form select {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 0.85rem;
+        }
+
+        .footer-form textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+
+        .footer-form .btn-enviar {
+            width: 100%;
+            padding: 0.6rem;
+            background: var(--azul-oscuro);
+            color: var(--blanco);
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .footer-form .btn-enviar:hover {
+            background: var(--rojo-principal);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 1;
+        }
+.nivel-icon-img {
+width: 300px;
+height: 300px;
+object-fit: contain;
+margin-bottom: -1rem;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+/* Mobile Menu */
+.mobile-toggle {
+display: none;
+flex-direction: column;
+gap: 5px;
+cursor: pointer;
+padding: 1rem;
+}
+
+.mobile-toggle span {
+width: 25px;
+height: 3px;
+background: var(--blanco);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+.mobile-toggle {
+display: flex;
+}
+
+.header-container {
+flex-wrap: wrap;
+padding: 0 1rem;
+}
+
+.logo-box {
+width: 100%;
+justify-content: center;
+border-radius: 0 0 30px 30px;
+margin-bottom: 1rem;
+}
+
+.nav-area {
+width: 100%;
+align-items: center;
+}
+
+.top-bar {
+padding: 1rem;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.navbar {
+display: none;
+width: 100%;
+margin-right: 0;
+}
+
+.navbar.active {
+display: block;
+}
+
+.navbar ul {
+flex-direction: column;
+}
+
+.dropdown-menu {
+position: static;
+opacity: 1;
+visibility: visible;
+transform: none;
+box-shadow: none;
+border: 1px solid var(--gris-claro);
+margin-top: 0.5rem;
+display: none;
+}
+
+.dropdown-menu.show {
+display: flex;
+}
+
+.hero-content h1 {
+font-size: 40px;
+}
+
+.hero-content h2 {
+font-size: 22px;
+}
+
+.hero-content p {
+font-size: 16px;
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+.mv-container,
+.metodologia-content {
+grid-template-columns: 1fr;
+}
+
+.valores-grid {
+grid-template-columns: 1fr;
+}
+.historia-content {
+   grid-template-columns: 1fr !important;
+    }
+    
+.historia-imagen {
+        order: -1;
+    }
+    
+ .historia-imagen img {
+   max-height: 300px;
+   object-fit: cover;
+    }
+    /* =================== */
+}
+/* Forzar separación final */
+.metodologia-niveles-section {
+    margin-bottom: 0rem !important;
+    padding-bottom: 0rem !important;
+}
+
+body {
+    padding-bottom: 0 !important;
+}
+@media (max-width: 968px) {
+    .acerca-bloque {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    
+    .acerca-bloque > div:first-child {
+        order: 2;
+    }
+    
+    .acerca-bloque > div:last-child {
+        order: 1;
+    }
+    
+    .acerca-imagen-container img {
+        height: 300px !important;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER RENOVADO -->
+<!-- HEADER RENOVADO -->
+<header class="main-header">
+    <div class="header-container">
+        <!-- Logo (Sin cambios) -->
+        <div class="logo-box">
+            <img src="logo-kingman.png" alt="Logo">
+            <div class="logo-text">EDUARDO<br>KINGMAN RIOFRÍO</div>
+        </div>
+        
+        <!-- Nav Area -->
+        <div class="nav-area">
+            <!-- Top Bar (Sin cambios) -->
+            <div class="top-bar">
+                <a href="mailto:eduardo.kingman11@gmail.com"><i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com</a>
+                <a href="https://www.facebook.com/share/1AYH7w3nQB/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a class="btn-contact" href="#contacto"><i class="fas fa-envelope"></i> Contáctenos</a>
+            </div>
+
+            <!-- Navbar MODIFICADO -->
+            <div class="navbar" id="navbar">
+                <ul>
+                    <li><a href="index.html" class="active">INICIO</a></li>
+                    
+                    <li class="dropdown">
+                        <a href="#" onclick="toggleDropdown(event)">QUIÉNES SOMOS <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <!-- CAMBIO 1: Enlace a la sección Acerca de -->
+                            <li><a href="#acerca">Acerca de Nosotros</a></li>
+                            <!-- CAMBIO 2: Enlace a la sección Misión Visión -->
+                            <li><a href="#mision-vision">Misión y Visión</a></li>
+                            <li><a href="principios-valores.html">Principios y Valores</a></li>
+                            <li><a href="metodologia.html">Metodología</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a href="#" onclick="toggleDropdown(event)">ACADÉMICO <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <!-- CAMBIO 3: Enlace a la sección Niveles -->
+                            <li><a href="#niveles">Niveles Educativos</a></li>
+                            <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+                            <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+                            <li><a href="reglamento.html">Reglamento</a></li>
+
+                        </ul>
+                    </li>
+                    
+                    <li><a href="galeria.html">GALERÍA</a></li>
+                    <li><a href="#contacto">CONTACTO</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Mobile Toggle (Sin cambios) -->
+        <div class="mobile-toggle" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</header>
+
+<!-- HERO CON CARRUSEL -->
+<section class="hero">
+<!-- Slide 1 -->
+<div class="hero-slide active">
+<img src="educacion.png" alt="Educación">
+</div>
+<!-- Slide 2 -->
+<div class="hero-slide">
+<img src="galeria.png" alt="Conocenos">
+</div>
+<!-- Slide 3 -->
+<div class="hero-slide">
+<img src="conocenos.png" alt="Metodología">
+</div>
+<!-- Slide 4 -->
+<div class="hero-slide">
+<img src="cuarta.png" alt="Ambiente">
+</div>
+
+<div class="hero-overlay"></div>
+<!-- <div class="hero-content">
+<h2>Aprendizaje global, posibilidades infinitas</h2>
+ <h1>EDUCACIÓN DE EXCELENCIA</h1> 
+<p>Formando líderes del mañana con valores y excelencia académica</p>
+</div>  -->
+<!-- Controls -->
+<div class="slider-btn prev" onclick="moveSlide(-1)">
+<i class="fas fa-chevron-left"></i>
+</div>
+<div class="slider-btn next" onclick="moveSlide(1)">
+<i class="fas fa-chevron-right"></i>
+</div>
+
+<!-- Dots -->
+<div class="dots">
+<span class="dot active" onclick="goToSlide(0)"></span>
+<span class="dot" onclick="goToSlide(1)"></span>
+<span class="dot" onclick="goToSlide(2)"></span>
+<span class="dot" onclick="goToSlide(3)"></span>
+</div>
+</section>
+
+<!-- SECCIÓN MISIÓN VISIÓN -->
+<section class="mision-vision-section" id="mision-vision">
+<div class="container">
+<div class="mv-container">
+<div class="mv-card">
+<h3><i class="fas fa-bullseye"></i>Misión</h3>
+<p>
+La Escuela de Educación Básica Particular Eduardo Kingman Riofrío tiene como misión brindar una educación integral, 
+humanista y de calidad, orientada al desarrollo de competencias académicas, artísticas, tecnológicas y sociales en niños y niñas de la comunidad salitreña. 
+</p>
+<p>
+Nuestro compromiso es formar estudiantes responsables, críticos, creativos y respetuosos de la diversidad, fortaleciendo valores de solidaridad, justicia y respeto al entorno, en un ambiente seguro,
+inclusivo y participativo que prepare a los educandos para enfrentar con éxito los retos de la sociedad actual y contribuir al progreso de su familia, su comunidad y el país.
+</p>
+<img src="mision.jpeg" alt="Misión">
+</div>
+<div class="mv-card vision">
+<h3><i class="fas fa-eye"></i>Visión </h3>
+<p>
+Ser una institución educativa referente en el cantón Salitre y la provincia del Guayas, reconocida por ofrecer una formación integral, inclusiva y de excelencia académica, 
+que promueve valores humanos, culturales y artísticos inspirados en el legado de Eduardo Kingman Riofrío.
+</p>
+<p>
+Aspiramos a que nuestros estudiantes desarrollen pensamiento crítico, sensibilidad social y compromiso con su comunidad, para convertirse en ciudadanos competentes,
+ solidarios e innovadores capaces de transformar positivamente su entorno y proyectarse al mundo con orgullo ecuatoriano
+</p>
+<img src="vision.png" alt="mision-Visión">
+</div>
+</div>
+
+<!-- Acerca De Nosotros -->
+<!-- Acerca De Nosotros - NUEVO DISEÑO -->
+<section class="acerca-nuevo-section" id="acerca" style="padding: 5rem 0; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 1rem;">Acerca De Nosotros</h2>
+        <p class="section-subtitle" style="text-align: center; margin-bottom: 4rem;">Conoce nuestra historia y filosofía educativa</p>
+        
+        <!-- Bloque 1: Imagen izquierda -->
+        <div class="acerca-bloque" style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        ">
+            <div class="acerca-imagen-container" style="
+                position: relative;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            ">
+                <img src="visision-mision.png" alt="Nuestra Escuela" 
+                     style="width: 100%; height: 400px; object-fit: cover; display: block;">
+                <div style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: linear-gradient(to top, rgba(30,58,138,0.9), transparent);
+                    padding: 2rem;
+                    color: white;
+                ">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Nuestra Filosofía</h3>
+                </div>
+            </div>
+            
+            <div class="acerca-contenido">
+                <h3 style="
+                    font-size: 2rem;
+                    color: var(--azul);
+                    margin-bottom: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                ">
+                </h3>
+                <p style="margin-bottom: 1rem; line-height: 1.8; color: var(--gris-texto);">
+                    En la Escuela de Educación Básica Eduardo Kingman Riofrío creemos que cada niño y niña 
+                    merece crecer en un lugar donde se sienta <strong>seguro, valorado y feliz</strong>.  
+                </p>
+                <p style="line-height: 1.8; color: var(--gris-texto);">
+                    Nuestro propósito es acompañarlos en cada paso de su aprendizaje, no solo enseñándoles
+                     conocimientos, sino también guiándolos para que descubran sus talentos, aprendan a 
+                     convivir con respeto, solidaridad y amor por los demás.
+                </p>
+                
+                <div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1.5rem;
+                    margin-top: 2rem;
+                ">
+                    <div style="
+                        background: white;
+                        padding: 1.5rem;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                        text-align: center;
+                    ">
+                        <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--azul-principal); margin-bottom: 0.5rem;"></i>
+                        <h4 style="color: var(--azul); margin-bottom: 0.5rem;">Ambiente Seguro</h4>
+                        <p style="font-size: 0.9rem; color: var(--gris-texto);">Espacio protegido y cariñoso</p>
+                    </div>
+                    <div style="
+                        background: white;
+                        padding: 1.5rem;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                        text-align: center;
+                    ">
+                        <i class="fas fa-users" style="font-size: 2rem; color: var(--verde-principal); margin-bottom: 0.5rem;"></i>
+                        <h4 style="color: var(--azul); margin-bottom: 0.5rem;">Comunidad</h4>
+                        <p style="font-size: 0.9rem; color: var(--gris-texto);">Convivencia respetuosa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bloque 2: Imagen derecha -->
+        <div class="acerca-bloque" style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        ">
+            <div class="acerca-contenido">
+                <h3 style="
+                    font-size: 2rem;
+                    color: var(--azul);
+                    margin-bottom: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                ">
+                    <i class="fas fa-palette" style="color: var(--naranja);"></i>
+                    Inspiración Kingman
+                </h3>
+                <p style="margin-bottom: 1rem; line-height: 1.8; color: var(--gris-texto);">
+                    Nos inspira la vida y obra de <strong>Eduardo Kingman</strong>, ecuatoriano que defendió 
+                    la dignidad de las personas y expresó con arte la grandeza de nuestro pueblo.
+                    
+                </p>
+                <p style="line-height: 1.8; color: var(--gris-texto);">
+                    Queremos que nuestros estudiantes se reconozcan orgullosos de sus raíces, desarrollen 
+                    creatividad ,confianza en sí mismos y se preparen para los retos de la vida.
+                </p>
+                
+                <div style="
+                    background: linear-gradient(135deg, var(--azul-principal), var(--verde-principal));
+                    padding: 2rem;
+                    border-radius: 15px;
+                    margin-top: 2rem;
+                    color: white;
+                ">
+                    <h4 style="margin-bottom: 1rem; font-size: 1.2rem;">
+                        <i class="fas fa-lightbulb" style="margin-right: 0.5rem;"></i>
+                        Nuestro Compromiso
+                    </h4>
+                    <p style="line-height: 1.6; opacity: 0.95;">
+                        Formar seres humanos íntegros, sensibles y comprometidos, capaz de aportar con 
+                        alegría y esperanza al bienestar de su familia, de su comunidad salitreña y de todo el Ecuador. 
+                        Ese es el corazón de nuestra misión y la razón de nuestra existencia como institución educativa.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="acerca-imagen-container" style="
+                position: relative;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            ">
+                <img src="visision-mision2.jpeg" alt="Actividades Culturales" 
+                     style="width: 100%; height: 400px; object-fit: cover; display: block;">
+            </div>
+        </div>
+        
+        <!-- Bloque 3: Tres columnas con íconos -->
+        <div style="
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-top: 3rem;
+        ">
+            <h3 style="
+                text-align: center;
+                font-size: 1.8rem;
+                color: var(--azul);
+                margin-bottom: 2.5rem;
+            ">
+                ¿Qué nos hace diferentes?
+            </h3>
+            
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            ">
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div style="
+                        width: 80px;
+                        height: 80px;
+                        background: linear-gradient(135deg, var(--azul-claro), var(--azul-principal));
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 auto 1rem;
+                    ">
+                        <i class="fas fa-graduation-cap" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h4 style="color: var(--azul); margin-bottom: 0.5rem;">Excelencia Académica</h4>
+                    <p style="color: var(--gris-texto); font-size: 0.95rem;">Formación integral con los más altos estándares</p>
+                </div>
+                
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div style="
+                        width: 80px;
+                        height: 80px;
+                        background: linear-gradient(135deg, var(--verde-claro), var(--verde-principal));
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 auto 1rem;
+                    ">
+                        <i class="fas fa-hands-helping" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h4 style="color: var(--azul); margin-bottom: 0.5rem;">Valores Humanos</h4>
+                    <p style="color: var(--gris-texto); font-size: 0.95rem;">Solidaridad, respeto y responsabilidad</p>
+                </div>
+                
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div style="
+                        width: 80px;
+                        height: 80px;
+                        background: linear-gradient(135deg, #fbbf24, var(--naranja));
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 auto 1rem;
+                    ">
+                        <i class="fas fa-rocket" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h4 style="color: var(--azul); margin-bottom: 0.5rem;">Innovación</h4>
+                    <p style="color: var(--gris-texto); font-size: 0.95rem;">Metodologías activas y tecnología</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN METODOLOGÍA Y NIVELES -->
+<section class="metodologia-niveles-section">
+    <div class="container">
+<h2 class="section-title">Nuestra Metodología</h2>
+<p class="section-subtitle">Formación integral con excelencia académica y valores</p>
+
+<div class="metodologia-content">
+<div class="metodologia-images">
+<img src="cambiar1.jpeg" alt="Estudiantes">
+<img src="foto2.jpeg" alt="Clase">
+<div class="metodologia-logo">
+<img src="logo-kingman.png" alt="Logo">
+</div>
+<img src="foto3.jpeg" alt="Actividad">
+<img src="foto4.jpeg" alt="Aprendizaje">
+</div>
+<div class="metodologia-text">
+<h3>CONÓCENOS</h3>
+<h2>Nuestra metodología</h2>
+<div class="divider"></div>
+<p>
+Nuestra institución desarrolla un proceso educativo integral que acompaña a los estudiantes desde los niveles iniciales hasta décimo año de Educación General Básica, 
+fomentando su participación activa y el desarrollo de habilidades académicas, sociales y personales.
+</p>
+<p>
+A través de estrategias didácticas dinámicas, el trabajo colaborativo y el uso responsable de la tecnología,
+ promovemos el pensamiento crítico, la creatividad y la autonomía
+</p>
+<p>
+Nuestro modelo educativo se fundamenta en la excelencia académica, los valores humanos, 
+la innovación pedagógica, la inclusión y el compromiso con la comunidad.
+</p>
+<a href="metodologia.html" class="btn-info">Más información</a>
+</div>
+</div>
+
+<!-- Niveles -->
+<h2 class="section-title" style="margin-top: 5rem;">Niveles Educativos</h2>
+<p class="section-subtitle">Acompañamos a tus hijos en cada etapa de su formación</p>
+<div class="niveles-grid" id="niveles">
+<div class="nivel-card">
+<img src="inicial.jpeg" alt="Educación Inicial" class="nivel-icon-img"
+style="display: block; margin-left: -20px; margin-right: 0 20px;">
+<h3>Educación Inicial/Básica Elemental</h3>
+<p>Estimulación temprana y desarrollo de habilidades básicas en un ambiente seguro, 
+    cariñoso y estimulante, para nuestros alumnos de Educación Inicial.</p>
+ <p>De igual manera ofrecemos una formación académica sólida para estudiantes de 2.º a 4.º de Educación Básica Elemental. </p>
+</div>
+<div class="nivel-card">
+<img src="basica.jpeg" alt="Educación Básica" class="nivel-icon-img" 
+     style="width: 350px; height: 350px; display: block; margin-left: -40px; margin-right: 0 20px;">
+<h3 style="margin-top: -60px; margin-bottom: 10px;">Educación Básica Media</h3>
+<p>Ofrecemos una formación académica sólida para estudiantes de 5.º a 7.º de Educación Básica,
+     enfocada en el desarrollo de competencias fundamentales y la formación en valores.</p>
+</div>
+<div class="nivel-card">
+<img src="preparatoria.jpeg" alt="Preparatoria" class="nivel-icon-img"
+style="display: block; margin-left: -20px; margin-right: 0 20px;">
+<h3>Educación Básica Superior</h3>
+<p>Brindamos una preparación integral para la transición hacia la educación media, dirigida a estudiantes de 8.º a 10.º 
+de Educación Básica, fortaleciendo sus conocimientos académicos y promoviendo el desarrollo de su autonomía y habilidades de aprendizaje.</p>
+</div>
+</div>
+</div>
+</section>
+</section> 
+<!-- Footer Profesional CON IMAGEN pie.png -->
+ <div></div>
+    <footer class="main-footer" id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>QUIÉNES SOMOS</h4>
+                    <ul>
+                        <li><a href="#mision-vision">Misión y Visión</a></li>
+                        <li><a href="principios-valores.html">Nuestros Principios y Valores</a></li>
+                        <li><a href="#acerca">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>ACADÉMICO</h4>
+                    <ul>
+                            <li><a href="#niveles">Niveles Educativos</a></li>
+                            <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+                            <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <!-- Formulario Compacto en Footer -->
+                    <div class="footer-col">
+  <div class="footer-contacto">
+    <h4>¿Tienes alguna pregunta?</h4>
+    <p><i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com</p>
+    <p><i class="fas fa-clock"></i> Atención: 08h00 a 13h00</p>
+    <p><i class="fas fa-map-marker-alt"></i> Salitre, Guayas - Ecuador</p>
+    
+    <form class="footer-form" action="https://formspree.io/f/mojkolkg" method="POST">
+      <div class="form-group">
+        <label for="nombre-footer">Nombre:</label>
+        <input type="text" id="nombre-footer" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="email-footer">Ingrese su Correo:</label>
+        <input type="email" id="email-footer" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="consulta-footer">Díganos ¿Cuál es su consulta?</label>
+        <textarea id="consulta-footer" name="consulta" required></textarea>
+      </div>
+      <button type="submit" class="btn-enviar">
+        <i class="fas fa-paper-plane"></i> Enviar
+      </button>
+    </form>
+  </div>
+</div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Unidad Educativa Eduardo Kingman Riofrío. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+<script>
+// Carrusel
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.dot');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+slides.forEach((slide, i) => {
+slide.classList.remove('active');
+if (dots[i]) dots[i].classList.remove('active');
+if (i === index) {
+slide.classList.add('active');
+if (dots[i]) dots[i].classList.add('active');
+}
+});
+}
+
+function nextSlide() {
+currentSlide = (currentSlide + 1) % totalSlides;
+showSlide(currentSlide);
+}
+
+function moveSlide(dir) {
+currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+showSlide(currentSlide);
+}
+
+function goToSlide(index) {
+currentSlide = index;
+showSlide(currentSlide);
+}
+
+setInterval(nextSlide, 4000);
+
+// Dropdown Mobile
+function toggleDropdown(e) {
+if (window.innerWidth <= 968) {
+e.preventDefault();
+const menu = e.currentTarget.nextElementSibling;
+if (menu) menu.classList.toggle('show');
+}
+}
+
+// Mobile Menu
+function toggleMobileMenu() {
+const nav = document.getElementById('navbar');
+if (nav) nav.classList.toggle('active');
+}
+
+// Cerrar dropdowns al hacer clic fuera
+document.addEventListener('click', (e) => {
+if (!e.target.closest('.dropdown')) {
+document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+}
+});
+
+// Header scroll effect
+window.addEventListener('scroll', () => {
+const header = document.querySelector('.main-header');
+if (header) {
+if (window.scrollY > 100) {
+header.style.background = 'rgba(255,255,255,0.95)';
+header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+} else {
+header.style.background = 'transparent';
+header.style.boxShadow = 'none';
+}
+}
+});
+</script>
+</body>
+</html>

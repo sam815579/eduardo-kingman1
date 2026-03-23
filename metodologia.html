@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metodología - Unidad Educativa Eduardo Kingman Riofrío</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 100px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+:root {
+  --azul: #1E3A8A;
+  --azul-claro: #90D5FF;
+  --azul-principal: #2563EB;
+  --rojo: #DC2626;
+  --rojo-oscuro: #991B1B;
+  --verde-principal: #22C55E;
+  --verde-claro: #86EFAC;
+  --gris: #f5f5f5;
+  --gris-claro: #F3F4F6;
+  --gris-texto: #4B5563;
+  --gris-oscuro: #1F2937;
+  --blanco: #FFFFFF;
+  --naranja: #F97316;
+}
+
+/* ================= HEADER ================= */
+.main-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.logo-box {
+  background: var(--blanco);
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: 0 60px 60px 0;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.logo-box img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-weight: 800;
+  color: var(--rojo);
+  font-size: 20px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.nav-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.top-bar {
+  background: transparent;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  margin-right: 1rem;
+  margin-left: auto;
+}
+
+.top-bar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+}
+
+.top-bar a:hover {
+  color: var(--azul-claro);
+}
+
+.btn-contact {
+  background: var(--rojo);
+  padding: 8px 18px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-contact:hover {
+  background: var(--blanco);
+  color: var(--rojo);
+  transform: translateY(-2px);
+}
+
+.navbar {
+  background: var(--blanco);
+  padding: 10px 25px;
+  border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  margin-right: 0;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--gris-oscuro);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  background: var(--gris-claro);
+  color: var(--rojo);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--blanco);
+  min-width: 240px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  border: 2px solid var(--azul-claro);
+  overflow: hidden;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  padding: 12px 18px;
+  color: var(--gris-oscuro);
+  font-size: 14px;
+  text-transform: none;
+  border-bottom: 1px solid var(--gris-claro);
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+  background: linear-gradient(90deg, var(--azul-claro) 0%, var(--verde-claro) 100%);
+  color: var(--azul);
+  padding-left: 22px;
+}
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.mobile-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--blanco);
+}
+
+/* ================= HERO INTERNO ================= */
+.page-hero {
+  height: 50vh;
+  min-height: 400px;
+  position: relative;
+  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-principal) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('conocenos.png') center/cover;
+  opacity: 0.2;
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+.page-hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.page-hero-content p {
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+/* ================= CONTENIDO PRINCIPAL ================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--azul);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--gris-texto);
+  margin-bottom: 3rem;
+}
+
+/* Sección Metodología */
+.metodologia-detail-section {
+  padding: 5rem 0;
+  background: var(--blanco);
+}
+
+.metodologia-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+.metodologia-item {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-left: 5px solid var(--azul-principal);
+  transition: all 0.3s ease;
+}
+
+.metodologia-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.metodologia-item:nth-child(2) {
+  border-left-color: var(--verde-principal);
+}
+
+.metodologia-item:nth-child(3) {
+  border-left-color: var(--rojo);
+}
+
+.metodologia-item:nth-child(4) {
+  border-left-color: var(--naranja);
+}
+
+.metodologia-item:nth-child(5) {
+  border-left-color: var(--azul-principal);
+}
+
+.metodologia-item:nth-child(6) {
+  border-left-color: var(--verde-principal);
+}
+
+.metodologia-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--azul-principal), var(--azul-claro));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.metodologia-icon i {
+  font-size: 2rem;
+  color: white;
+}
+
+.metodologia-item h3 {
+  font-size: 1.5rem;
+  color: var(--azul);
+  margin-bottom: 1rem;
+}
+
+.metodologia-item p {
+  color: var(--gris-texto);
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* Enfoque Pedagógico */
+.enfoque-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.enfoque-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.enfoque-imagen {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.enfoque-imagen img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.enfoque-texto h2 {
+  font-size: 2.5rem;
+  color: var(--azul);
+  margin-bottom: 1.5rem;
+}
+
+.enfoque-texto .divider {
+  width: 80px;
+  height: 4px;
+  background: var(--rojo);
+  margin-bottom: 2rem;
+}
+
+.enfoque-texto p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  color: var(--gris-texto);
+  text-align: justify;
+}
+
+.enfoque-lista {
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.enfoque-lista li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--gris-claro);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.enfoque-lista li i {
+  color: var(--verde-principal);
+  font-size: 1.2rem;
+}
+
+.enfoque-lista li strong {
+  color: var(--azul);
+}
+
+/* Estrategias */
+.estrategias-section {
+  padding: 5rem 0;
+  background: var(--blanco);
+}
+
+.estrategias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.estrategia-card {
+  background: var(--blanco);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: all 0.3s;
+  border-top: 4px solid var(--azul-principal);
+}
+
+.estrategia-card:hover {
+  transform: translateY(-10px);
+}
+
+.estrategia-card:nth-child(2) {
+  border-top-color: var(--verde-principal);
+}
+
+.estrategia-card:nth-child(3) {
+  border-top-color: var(--rojo);
+}
+
+.estrategia-card:nth-child(4) {
+  border-top-color: var(--naranja);
+}
+
+.estrategia-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--azul-principal);
+}
+
+.estrategia-card h3 {
+  font-size: 1.3rem;
+  color: var(--azul);
+  margin-bottom: 1rem;
+}
+
+.estrategia-card p {
+  color: var(--gris-texto);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Evaluación */
+.evaluacion-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, rgba(30,58,138,0.95) 0%, rgba(37,99,235,0.95) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.evaluacion-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('pie.png') center/cover;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.evaluacion-content {
+  position: relative;
+  z-index: 1;
+}
+
+.evaluacion-content h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.evaluacion-content .subtitle {
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.evaluacion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.evaluacion-item {
+  background: rgba(255,255,255,0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.evaluacion-item h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.evaluacion-item p {
+  opacity: 0.9;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* CTA */
+.cta-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, var(--naranja) 0%, var(--rojo) 100%);
+  text-align: center;
+  color: white;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background: var(--blanco);
+  color: var(--rojo);
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.cta-btn:hover {
+  background: var(--azul);
+  color: var(--blanco);
+  transform: translateY(-3px);
+}
+
+/* ================= FOOTER ================= */
+.main-footer {
+  background: linear-gradient(135deg, rgba(30,58,138,0.95) 0%, rgba(37,99,235,0.95) 100%);
+  color: var(--blanco);
+  padding: 4rem 0 1rem;
+  position: relative;
+  overflow: hidden;
+  clear: both;
+  margin-top: 1rem;
+  z-index: 10;
+}
+
+.main-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('pie.png') center/cover no-repeat;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main-footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30,58,138,0.5);
+  z-index: 0;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-col h4 {
+  color: var(--blanco);
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-col h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--verde-claro);
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-col ul li a {
+  color: var(--blanco);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-col ul li a:hover {
+  opacity: 1;
+  color: var(--verde-claro);
+  padding-left: 5px;
+}
+
+.footer-contacto {
+  background: var(--naranja);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.footer-contacto h4 {
+  color: var(--blanco);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-contacto h4::after {
+  display: none;
+}
+
+.footer-contacto p {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.footer-form {
+  margin-top: 1rem;
+}
+
+.footer-form .form-group {
+  margin-bottom: 0.75rem;
+}
+
+.footer-form label {
+  display: block;
+  color: var(--blanco);
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.footer-form input,
+.footer-form textarea,
+.footer-form select {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+.footer-form textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.footer-form .btn-enviar {
+  width: 100%;
+  padding: 0.6rem;
+  background: var(--azul-principal);
+  color: var(--blanco);
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.footer-form .btn-enviar:hover {
+  background: var(--rojo);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  z-index: 1;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 968px) {
+  .mobile-toggle {
+    display: flex;
+  }
+  
+  .header-container {
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+  
+  .logo-box {
+    width: 100%;
+    justify-content: center;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 1rem;
+  }
+  
+  .nav-area {
+    width: 100%;
+    align-items: center;
+  }
+  
+  .top-bar {
+    padding: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .navbar {
+    display: none;
+    width: 100%;
+    margin-right: 0;
+  }
+  
+  .navbar.active {
+    display: block;
+  }
+  
+  .navbar ul {
+    flex-direction: column;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: 1px solid var(--gris-claro);
+    margin-top: 0.5rem;
+    display: none;
+  }
+  
+  .dropdown-menu.show {
+    display: flex;
+  }
+  
+  .page-hero {
+    height: 40vh;
+    min-height: 300px;
+  }
+  
+  .page-hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .page-hero-content p {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .metodologia-grid,
+  .enfoque-content,
+  .estrategias-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .enfoque-imagen {
+    order: -1;
+  }
+  
+  .enfoque-imagen img {
+    height: 300px;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .metodologia-item {
+    padding: 1.5rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-box">
+      <img src="logo-kingman.png" alt="Logo">
+      <div class="logo-text">EDUARDO<br>KINGMAN RIOFRÍO</div>
+    </div>
+    
+    <div class="nav-area">
+      <div class="top-bar">
+        <a href="mailto:eduardo.kingman11@gmail.com">
+          <i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com
+        </a>
+        <a href="https://www.facebook.com/share/1AYH7w3nQB/" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a class="btn-contact" href="#contacto">
+          <i class="fas fa-envelope"></i> Contáctenos
+        </a>
+      </div>
+      
+      <nav class="navbar" id="navbar">
+        <ul>
+          <li><a href="index.html">INICIO</a></li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">
+              QUIÉNES SOMOS <i class="fas fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html#acerca">Acerca de Nosotros</a></li>
+              <li><a href="index.html#mision-vision">Misión y Visión</a></li>
+              <li><a href="principios-valores.html">Principios y Valores</a></li>
+              <li><a href="metodologia.html">Metodología</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">
+              ACADÉMICO <i class="fas fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html#niveles">Niveles Educativos</a></li>
+              <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+              <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+              <li><a href="reglamento.html">Reglamento</a></li>
+            </ul>
+          </li>
+          <li><a href="galeria.html">GALERÍA</a></li>
+          <li><a href="#contacto">CONTACTO</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="mobile-toggle" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO INTERNO -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1><i class="fas fa-book-open"></i> Metodología</h1>
+    <p>Un enfoque educativo integral que combina excelencia académica, valores humanos e innovación pedagógica</p>
+  </div>
+</section>
+
+<!-- METODOLOGÍA DETALLE -->
+<section class="metodologia-detail-section">
+  <div class="container">
+    <h2 class="section-title">Nuestro Modelo Educativo</h2>
+    <p class="section-subtitle">Pilares fundamentales que guían nuestro proceso de enseñanza-aprendizaje</p>
+    
+    <div class="metodologia-grid">
+      <div class="metodologia-item">
+        <div class="metodologia-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3>Aprendizaje Activo</h3>
+        <p>
+          Los estudiantes son protagonistas de su propio aprendizaje. Fomentamos la participación, 
+          la curiosidad y el descubrimiento a través de actividades prácticas y significativas que 
+          conectan con su realidad cotidiana.
+        </p>
+      </div>
+      
+      <div class="metodologia-item">
+        <div class="metodologia-icon" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Trabajo Colaborativo</h3>
+        <p>
+          Promovemos el aprendizaje en equipo, donde los estudiantes desarrollan habilidades sociales, 
+          aprenden a escuchar, compartir ideas y construir conocimiento de manera conjunta, 
+          preparándose para la vida en comunidad.
+        </p>
+      </div>
+      
+      <div class="metodologia-item">
+        <div class="metodologia-icon" style="background: linear-gradient(135deg, var(--rojo), #f87171);">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3>Tecnología Educativa</h3>
+        <p>
+          Integramos herramientas digitales de manera responsable y creativa, preparando a los 
+          estudiantes para el mundo actual. Usamos la tecnología como medio para potenciar el 
+          aprendizaje, no como fin en sí mismo.
+        </p>
+      </div>
+      
+      <div class="metodologia-item">
+        <div class="metodologia-icon" style="background: linear-gradient(135deg, var(--naranja), #fbbf24);">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h3>Formación en Valores</h3>
+        <p>
+          La educación integral incluye el desarrollo ético y moral. Trabajamos valores como 
+          respeto, responsabilidad, solidaridad y honestidad en cada actividad diaria, 
+          formando ciudadanos de bien.
+        </p>
+      </div>
+      
+      <div class="metodologia-item">
+        <div class="metodologia-icon" style="background: linear-gradient(135deg, var(--azul-principal), var(--azul-claro));">
+          <i class="fas fa-puzzle-piece"></i>
+        </div>
+        <h3>Aprendizaje Personalizado</h3>
+        <p>
+          Reconocemos que cada estudiante es único. Adaptamos nuestras estrategias para atender 
+          los diferentes ritmos y estilos de aprendizaje, asegurando que todos alcancen su 
+          máximo potencial.
+        </p>
+      </div>
+      
+      <div class="metodologia-item">
+        <div class="metodologia-icon" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">
+          <i class="fas fa-globe-americas"></i>
+        </div>
+        <h3>Conexión con la Comunidad</h3>
+        <p>
+          El aprendizaje trasciende las aulas. Vinculamos nuestros proyectos con la comunidad 
+          salitreña, fomentando el sentido de pertenencia y el compromiso social desde temprana edad.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENFOQUE PEDAGÓGICO -->
+<section class="enfoque-section">
+  <div class="container">
+    <div class="enfoque-content">
+      <div class="enfoque-imagen">
+        <img src="foto2.jpeg" alt="Enfoque Pedagógico">
+      </div>
+      
+      <div class="enfoque-texto">
+        <h2>Enfoque Pedagógico</h2>
+        <div class="divider"></div>
+        <p>
+          Nuestra metodología se basa en un enfoque <strong>constructivista y humanista</strong>, 
+          donde el estudiante construye su conocimiento a partir de experiencias significativas 
+          y el desarrollo de su potencial humano integral.
+        </p>
+        <p>
+          Los docentes actúan como facilitadores del aprendizaje, guiando a los estudiantes en 
+          su proceso de descubrimiento, mientras fomentamos el pensamiento crítico, la creatividad 
+          y la autonomía progresiva.
+        </p>
+        
+        <ul class="enfoque-lista">
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span><strong>Centrado en el estudiante:</strong> Cada niño es el protagonista de su aprendizaje</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span><strong>Aprendizaje significativo:</strong> Conectamos los contenidos con la vida real</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span><strong>Evaluación formativa:</strong> Valoramos el proceso, no solo el resultado</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span><strong>Inclusión educativa:</strong> Atendemos la diversidad como oportunidad de enriquecimiento</span>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <span><strong>Familia y escuela:</strong> Trabajamos en estrecha colaboración con las familias</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRATEGIAS DIDÁCTICAS -->
+<section class="estrategias-section">
+  <div class="container">
+    <h2 class="section-title">Estrategias Didácticas</h2>
+    <p class="section-subtitle">Herramientas y métodos que utilizamos en el aula</p>
+    
+    <div class="estrategias-grid">
+      <div class="estrategia-card">
+        <div class="estrategia-icon">
+          <i class="fas fa-project-diagram"></i>
+        </div>
+        <h3>Aprendizaje Basado en Proyectos</h3>
+        <p>
+          Los estudiantes resuelven problemas reales mediante proyectos interdisciplinarios 
+          que integran conocimientos de diversas áreas.
+        </p>
+      </div>
+      
+      <div class="estrategia-card">
+        <div class="estrategia-icon" style="color: var(--verde-principal);">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+        <h3>Aula Invertida</h3>
+        <p>
+          Los estudiantes exploran contenidos antes de clase y utilizan el tiempo en el aula 
+          para actividades prácticas y discusión.
+        </p>
+      </div>
+      
+      <div class="estrategia-card">
+        <div class="estrategia-icon" style="color: var(--rojo);">
+          <i class="fas fa-gamepad"></i>
+        </div>
+        <h3>Gamificación</h3>
+        <p>
+          Incorporamos elementos de juego para motivar el aprendizaje, hacer las clases más 
+          dinámicas y fomentar la competencia sana.
+        </p>
+      </div>
+      
+      <div class="estrategia-card">
+        <div class="estrategia-icon" style="color: var(--naranja);">
+          <i class="fas fa-flask"></i>
+        </div>
+        <h3>Aprendizaje Experimental</h3>
+        <p>
+          Laboratorios, experimentos y actividades prácticas que permiten aprender haciendo 
+          y desarrollar el método científico.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVALUACIÓN -->
+<section class="evaluacion-section">
+  <div class="container">
+    <div class="evaluacion-content">
+      <h2><i class="fas fa-clipboard-check"></i> Sistema de Evaluación</h2>
+      <p class="subtitle">Evaluamos para mejorar, no para calificar</p>
+      
+      <div class="evaluacion-grid">
+        <div class="evaluacion-item">
+          <h3><i class="fas fa-search"></i> Diagnóstica</h3>
+          <p>
+            Identificamos los conocimientos previos de los estudiantes al inicio de cada 
+            unidad para adaptar nuestra enseñanza a sus necesidades.
+          </p>
+        </div>
+        
+        <div class="evaluacion-item">
+          <h3><i class="fas fa-chart-line"></i> Formativa</h3>
+          <p>
+            Acompañamos el proceso de aprendizaje con retroalimentación constante que permite 
+            a los estudiantes mejorar progresivamente.
+          </p>
+        </div>
+        
+        <div class="evaluacion-item">
+          <h3><i class="fas fa-star"></i> Sumativa</h3>
+          <p>
+            Valoramos los logros alcanzados al final de cada período, considerando tanto 
+            los resultados como el esfuerzo y progreso individual.
+          </p>
+        </div>
+        
+        <div class="evaluacion-item">
+          <h3><i class="fas fa-user-friends"></i> Coevaluación</h3>
+          <p>
+            Fomentamos que los estudiantes evalúen el trabajo de sus compañeros, desarrollando 
+            criterio crítico y capacidad de análisis.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>¿Quieres conocer más sobre nuestra metodología?</h2>
+    <p>Agenda una visita guiada y conoce nuestras instalaciones</p>
+    <a href="index.html#contacto" class="cta-btn">
+      <i class="fas fa-calendar-alt"></i> Contáctanos
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="main-footer" id="contacto">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>QUIÉNES SOMOS</h4>
+        <ul>
+          <li><a href="index.html#mision-vision">Misión y Visión</a></li>
+          <li><a href="principios-valores.html">Nuestros Principios y Valores</a></li>
+          <li><a href="index.html#acerca">Sobre Nosotros</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>ACADÉMICO</h4>
+        <ul>
+          <li><a href="index.html#niveles">Niveles Educativos</a></li>
+          <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+          <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+        </ul>
+      </div>
+      
+<div class="footer-col">
+  <div class="footer-contacto">
+    <h4>¿Tienes alguna pregunta?</h4>
+    <p><i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com</p>
+    <p><i class="fas fa-clock"></i> Atención: 08h00 a 13h00</p>
+    <p><i class="fas fa-map-marker-alt"></i> Salitre, Guayas - Ecuador</p>
+    
+    <form class="footer-form" action="https://formspree.io/f/mojkolkg" method="POST">
+      <div class="form-group">
+        <label for="nombre-footer">Nombre:</label>
+        <input type="text" id="nombre-footer" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="email-footer">Ingrese su Correo:</label>
+        <input type="email" id="email-footer" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="consulta-footer">Díganos ¿Cuál es su consulta?</label>
+        <textarea id="consulta-footer" name="consulta" required></textarea>
+      </div>
+      <button type="submit" class="btn-enviar">
+        <i class="fas fa-paper-plane"></i> Enviar
+      </button>
+    </form>
+  </div>
+</div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Unidad Educativa Eduardo Kingman Riofrío. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Dropdown Mobile
+function toggleDropdown(e) {
+  if (window.innerWidth <= 968) {
+    e.preventDefault();
+    const menu = e.currentTarget.nextElementSibling;
+    if (menu) menu.classList.toggle('show');
+  }
+}
+
+// Mobile Menu
+function toggleMobileMenu() {
+  const nav = document.getElementById('navbar');
+  if (nav) nav.classList.toggle('active');
+}
+
+// Cerrar dropdowns al hacer clic fuera
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+  }
+});
+
+// Header scroll effect
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('.main-header');
+  if (header) {
+    if (window.scrollY > 100) {
+      header.style.background = 'rgba(255,255,255,0.95)';
+      header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+    } else {
+      header.style.background = 'transparent';
+      header.style.boxShadow = 'none';
+    }
+  }
+});
+</script>
+
+</body>
+</html>

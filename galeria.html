@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Unidad Educativa Eduardo Kingman Riofrío</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        :root {
+            --azul: #1E3A8A;
+            --azul-claro: #90D5FF;
+            --azul-principal: #2563EB;
+            --rojo: #DC2626;
+            --rojo-oscuro: #991B1B;
+            --verde-principal: #22C55E;
+            --verde-claro: #86EFAC;
+            --gris: #f5f5f5;
+            --gris-claro: #F3F4F6;
+            --gris-texto: #4B5563;
+            --gris-oscuro: #1F2937;
+            --blanco: #FFFFFF;
+            --naranja: #F97316;
+            --dorado: #FBBF24;
+            --rosado: #EC4899;
+        }
+        
+        /* ================= HEADER ================= */
+        .main-header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .logo-box {
+            background: var(--blanco);
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-radius: 0 60px 60px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .logo-box img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            font-weight: 800;
+            color: var(--rojo);
+            font-size: 20px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+        
+        .nav-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .top-bar {
+            background: transparent;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1.5rem;
+            margin-right: 1rem;
+            margin-left: auto;
+        }
+        
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.7s;
+        }
+        
+        .top-bar a:hover {
+            color: var(--azul-claro);
+        }
+        
+        .btn-contact {
+            background: var(--rojo);
+            padding: 8px 18px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-contact:hover {
+            background: var(--blanco);
+            color: var(--rojo);
+            transform: translateY(-2px);
+        }
+        
+        .navbar {
+            background: var(--blanco);
+            padding: 10px 25px;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            margin-right: 0;
+        }
+        
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .navbar a {
+            text-decoration: none;
+            color: var(--gris-oscuro);
+            font-weight: 700;
+            font-size: 13px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .navbar a:hover,
+        .navbar a.active {
+            background: var(--gris-claro);
+            color: var(--rojo);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--blanco);
+            min-width: 240px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            border: 2px solid var(--azul-claro);
+            overflow: hidden;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            padding: 12px 18px;
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            text-transform: none;
+            border-bottom: 1px solid var(--gris-claro);
+        }
+        
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a:hover {
+            background: linear-gradient(90deg, var(--azul-claro) 0%, var(--verde-claro) 100%);
+            color: var(--azul);
+            padding-left: 22px;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 1rem;
+        }
+        
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--blanco);
+        }
+        
+        /* ================= HERO GALERÍA ================= */
+        .galeria-hero {
+            position: relative;
+            height: 550px;
+            background: linear-gradient(135deg, rgba(30,58,138,0.95) 0%, rgba(236,72,153,0.9) 100%),
+                        url('visision-mision.png') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .galeria-hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            letter-spacing: 3px;
+        }
+        
+        .hero-content h1 i {
+            color: var(--dorado);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .hero-content p {
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 500;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.15);
+            padding: 1.5rem 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--dorado);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* ================= FILTROS ================= */
+        .galeria-filtros {
+            background: linear-gradient(135deg, var(--blanco) 0%, var(--gris-claro) 100%);
+            padding: 2.5rem 0;
+            position: sticky;
+            top: 100px;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .filtros-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filtro-btn {
+            padding: 14px 32px;
+            border: 3px solid var(--azul-principal);
+            background: var(--blanco);
+            color: var(--azul-principal);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .filtro-btn:hover,
+        .filtro-btn.active {
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--rosado) 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+        }
+        
+        /* ================= GALERÍA PRINCIPAL ================= */
+        .galeria-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 42px;
+            color: var(--azul);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .section-header h2 i {
+            color: var(--rosado);
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: var(--gris-texto);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .galeria-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--gris-claro);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            aspect-ratio: 1/1;
+        }
+        
+        .galeria-item:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            z-index: 10;
+        }
+        
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        
+        .galeria-item:hover img {
+            transform: scale(1.15);
+        }
+        
+        .galeria-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, 
+                rgba(30,58,138,0.95) 0%, 
+                rgba(236,72,153,0.85) 50%, 
+                transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .galeria-item:hover .galeria-overlay {
+            opacity: 1;
+        }
+        
+        
+        .galeria-overlay h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .galeria-overlay p {
+            color: rgba(255,255,255,0.95);
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .galeria-overlay .ver-mas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--naranja) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .galeria-item:hover .ver-mas {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .ver-mas i {
+            color: var(--azul);
+            font-size: 32px;
+        }
+        
+        /* ================= LIGHTBOX MEJORADO ================= */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.98);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-container {
+            position: relative;
+            max-width: 95%;
+            max-height: 95%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+        }
+        
+        .lightbox-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(30,58,138,0.98), transparent);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        
+        .lightbox-info h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .lightbox-info p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--rojo) 0%, var(--rosado) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        
+        .lightbox-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 12px 35px rgba(220,38,38,0.6);
+        }
+        
+        .lightbox-close i {
+            color: white;
+            font-size: 28px;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--rosado) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        
+        .lightbox-nav:hover {
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 12px 35px rgba(37,99,235,0.6);
+        }
+        
+        .lightbox-prev { left: 30px; }
+        .lightbox-next { right: 30px; }
+        
+        .lightbox-nav i {
+            color: white;
+            font-size: 28px;
+        }
+        
+        .lightbox-counter {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            color: white;
+            font-size: 18px;
+            background: linear-gradient(135deg, var(--azul-principal), var(--rosado));
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Thumbnails */
+        .lightbox-thumbnails {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            max-width: 700px;
+            overflow-x: auto;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .thumb {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+        
+        .thumb:hover,
+        .thumb.active {
+            opacity: 1;
+            border-color: var(--dorado);
+            transform: scale(1.1);
+        }
+        
+        /* ================= FOOTER ================= */
+        .main-footer {
+            background: linear-gradient(135deg, rgba(30,58,138,0.95) 0%, rgba(37,99,235,0.95) 100%);
+            color: var(--blanco);
+            padding: 4rem 0 1rem;
+            position: relative;
+            overflow: hidden;
+            clear: both;
+            margin-top: 1rem;
+            z-index: 10;
+        }
+        
+        .main-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('pie.png') center/cover no-repeat;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .main-footer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30,58,138,0.5);
+            z-index: 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 20px;
+        }
+        
+        .footer-col h4 {
+            color: var(--blanco);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--verde-claro);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-col ul li a {
+            color: var(--blanco);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: var(--verde-claro);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .mobile-toggle {
+                display: flex;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+                padding: 0 1rem;
+            }
+            
+            .logo-box {
+                width: 100%;
+                justify-content: center;
+                border-radius: 0 0 30px 30px;
+                margin-bottom: 1rem;
+            }
+            
+            .nav-area {
+                width: 100%;
+                align-items: center;
+            }
+            
+            .top-bar {
+                padding: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .navbar {
+                display: none;
+                width: 100%;
+                margin-right: 0;
+            }
+            
+            .navbar.active {
+                display: block;
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: 1px solid var(--gris-claro);
+                margin-top: 0.5rem;
+                display: none;
+            }
+            
+            .dropdown-menu.show {
+                display: flex;
+            }
+            
+            .hero-content h1 {
+                font-size: 42px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .galeria-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lightbox-nav {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .thumb {
+                width: 70px;
+                height: 70px;
+            }
+        }
+        
+        /* Prevenir selección y clic derecho */
+        .galeria-item {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .galeria-item img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            --user-drag: none;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-box">
+                <img src="logo-kingman.png" alt="Logo">
+                <div class="logo-text">EDUARDO<br>KINGMAN RIOFRÍO</div>
+            </div>
+            
+            <div class="nav-area">
+                <div class="top-bar">
+                    <a href="mailto:eduardo.kingman11@gmail.com">
+                        <i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com
+                    </a>
+                    <a href="https://www.facebook.com/share/1AYH7w3nQB/" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a class="btn-contact" href="#contacto">
+                        <i class="fas fa-envelope"></i> Contáctenos
+                    </a>
+                </div>
+                
+                <div class="navbar" id="navbar">
+                    <ul>
+                        <li><a href="index.html">INICIO</a></li>
+                        <li class="dropdown">
+                            <a href="#" onclick="toggleDropdown(event)">
+                                QUIÉNES SOMOS <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#acerca">Acerca de Nosotros</a></li>
+                                <li><a href="index.html#mision-vision">Misión y Visión</a></li>
+                                <li><a href="principios-valores.html">Principios y Valores</a></li>
+                                <li><a href="metodologia.html">Metodología</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" onclick="toggleDropdown(event)">
+                                ACADÉMICO <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#niveles">Niveles Educativos</a></li>
+                                <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+                                <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+                                 <li><a href="reglamento.html">Reglamento</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="galeria.html" class="active">GALERÍA</a></li>
+                        <li><a href="index.html#contacto">CONTACTO</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mobile-toggle" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- HERO -->
+    <section class="galeria-hero">
+        <div class="hero-content">
+            <h1>
+                <i class="fas fa-camera-retro"></i>
+                GALERÍA
+            </h1>
+            <p>Descubre los momentos especiales que viven nuestros estudiantes cada día</p>
+        </div>
+    </section>
+    
+    <!-- FILTROS -->
+        <!-- GALERÍA -->
+    <div class="galeria-wrapper">
+        <div class="section-header">
+            <h2><i class="fas fa-images"></i> Nuestros Momentos Especiales</h2>
+            <p>Cada fotografía captura la alegría, el aprendizaje y el crecimiento de nuestros estudiantes</p>
+        </div>
+        
+        <div class="galeria-grid" id="galeria-grid">
+            <!-- Las fotos se generan dinámicamente con JavaScript -->
+        </div>
+    </div>
+    
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-counter" id="lightbox-counter">1 / 10</div>
+        <div class="lightbox-close" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="lightbox-nav lightbox-next" onclick="changeImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        
+        <div class="lightbox-container">
+            <img src="" alt="Imagen ampliada" class="lightbox-img" id="lightbox-img">
+            <div class="lightbox-info" id="lightbox-info">
+                <h3 id="lightbox-title">Título</h3>
+                <p id="lightbox-desc">Descripción</p>
+            </div>
+        </div>
+        
+        <div class="lightbox-thumbnails" id="lightbox-thumbnails">
+            <!-- Thumbnails se generan dinámicamente -->
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="main-footer" id="contacto">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>QUIÉNES SOMOS</h4>
+                <ul>
+                                <li><a href="index.html#acerca">Acerca de Nosotros</a></li>
+                                <li><a href="index.html#mision-vision">Misión y Visión</a></li>
+                                <li><a href="principios-valores.html">Principios y Valores</a></li>
+                                <li><a href="metodologia.html">Metodología</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>ACADÉMICO</h4>
+                <ul>
+                                <li><a href="index.html#niveles">Niveles Educativos</a></li>
+                                <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+                                <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+                                <li><a href="reglamento.html">Reglamento</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>CONTACTO</h4>
+                <p><i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Atención: 08h00 a 13h00</p>
+                <p><i class="fas fa-map-marker-alt"></i> Salitre, Guayas - Ecuador</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Unidad Educativa Eduardo Kingman Riofrío. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Datos de las fotos - AGREGA AQUÍ TODAS TUS FOTOS
+        const fotosGaleria = [
+            {
+                src: 'cambiar1.jpeg',
+            },
+            {
+                src: 'inicial.jpeg',
+              
+            },
+            {
+                src: 'pro.jpeg',
+            },
+            {
+                src: 'fest.jpeg',
+    
+            },
+            {
+                src: 'nav.jpeg',
+        
+            },
+            {
+                src: 'ferias.jpeg',
+            
+            },
+            {
+                src: 'feri.jpeg',
+      
+            },
+            {
+                src: 'feria.jpeg',
+        
+            },
+            // AGREGA MÁS FOTOS AQUÍ COPIANDO Y PEGANDO EL BLOQUE
+              {
+                src: 'galeria (1).jpeg',
+      
+            },
+            {
+                src: 'galeria (2).jpeg',
+ 
+            },
+            {
+                src: 'galeria (3).jpeg',
+      
+            },
+            {
+                src: 'galeria (4).jpeg',
+
+            },
+            {
+                src: 'galeria (5).jpeg',
+           
+            },
+            {
+                src: 'galeria (12).jpeg',
+            },
+            {
+                src: 'galeria (13).jpeg',
+
+            },
+            {
+                src: 'galeria (14).jpeg',
+            },
+            {
+                src: 'galeria (6).jpeg',
+   
+            },
+            {
+                src: 'galeria (7).jpeg',
+
+            },
+            {
+                src: 'galeria (8).jpeg',
+            },
+            {
+                src: 'galeria (9).jpeg',
+            },
+            {
+                src: 'galeria (10).jpeg',
+            }, {
+                src: 'galeria (11).jpeg',
+            }, {
+                src: 'galeria (15).jpeg',
+            },
+            {
+                src: 'gale (1).jpeg',
+            },
+            {
+                src: 'gale (2).jpeg',
+            },
+            {
+                src: 'gale (3).jpeg',
+            },
+            {
+                src: 'gale (4).jpeg',
+            },
+            {
+                src: 'gale (5).jpeg',
+            },
+            {
+                src: 'gale (6).jpeg',
+            },
+            {
+                src: 'gale (7).jpeg',
+            },
+            {
+                src: 'gale (8).jpeg',
+            },
+            {
+                src: 'gale (9).jpeg',
+            },
+            {
+                src: 'gale (10).jpeg',
+            },
+            {
+                src: 'gale (11).jpeg',
+            },
+            {
+                src: 'gale (12).jpeg',
+
+            },
+            {
+                src: 'gale (13).jpeg',
+
+            },
+            {
+                src: 'gale (14).jpeg',
+            },
+            {
+                src: 'gale (15).jpeg',
+            },
+            {
+                src: 'preparatoria.jpeg',
+
+            },
+            {
+                src: 'pie.png',
+
+            },
+            {
+                src: 'mision.jpeg',
+   
+            },
+            {
+                src: 'vision.png',
+
+            },
+            {
+                src: 'visision-mision2.jpeg',
+   
+            },
+            {
+                src: 'foto3.jpeg',
+ 
+            },
+            {
+                src: 'foto4.jpeg',
+   
+            },
+            {
+                src: 'foto2.jpeg',
+   
+            }
+
+        ];
+        
+        let currentImageIndex = 0;
+        let filteredImages = [...fotosGaleria];
+        
+        // Generar galería dinámicamente
+        function generarGaleria(fotos) {
+            const grid = document.getElementById('galeria-grid');
+            grid.innerHTML = '';
+            
+            fotos.forEach((foto, index) => {
+                const item = document.createElement('div');
+                item.className = 'galeria-item';
+                //item.dataset.categoria = foto.categoria;
+                item.onclick = () => openLightbox(index);
+                
+                item.innerHTML = `
+                    <img src="${foto.src}" alt="${foto.titulo}" loading="lazy" draggable="false">
+                    <div class="galeria-overlay">
+                        <div class="ver-mas">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(item);
+            });
+            
+            // Actualizar contador
+            document.getElementById('total-fotos').textContent = fotos.length;
+        }
+        
+        // Inicializar galería
+        generarGaleria(fotosGaleria);
+        
+        // Filtrar galería
+       // function filtrarGaleria(categoria) {
+           // const buttons = document.querySelectorAll('.filtro-btn');
+            
+            // Actualizar botón activo
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.filtro-btn').classList.add('active');
+            
+            // Filtrar
+           // if (categoria === 'todos') {
+           //     filteredImages = [...fotosGaleria];
+           // } else {
+           //     filteredImages = fotosGaleria.filter(foto => foto.categoria === categoria);
+            
+            
+            generarGaleria(filteredImages);
+    
+        
+        // Lightbox
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDesc = document.getElementById('lightbox-desc');
+            const counter = document.getElementById('lightbox-counter');
+            
+            const foto = filteredImages[index];
+            lightboxImg.src = foto.src;
+            lightboxTitle.textContent = foto.titulo;
+            lightboxDesc.textContent = foto.descripcion;
+            counter.textContent = `${index + 1} / ${filteredImages.length}`;
+            
+            generarThumbnails();
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function generarThumbnails() {
+            const container = document.getElementById('lightbox-thumbnails');
+            container.innerHTML = '';
+            
+            filteredImages.forEach((foto, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = foto.src;
+                thumb.className = 'thumb' + (index === currentImageIndex ? ' active' : '');
+                thumb.onclick = () => goToImage(index);
+                thumb.draggable = false;
+                container.appendChild(thumb);
+            });
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = filteredImages.length - 1;
+            if (currentImageIndex >= filteredImages.length) currentImageIndex = 0;
+            goToImage(currentImageIndex);
+        }
+        
+        function goToImage(index) {
+            currentImageIndex = index;
+            const foto = filteredImages[index];
+            
+            document.getElementById('lightbox-img').src = foto.src;
+            document.getElementById('lightbox-title').textContent = foto.titulo;
+            document.getElementById('lightbox-desc').textContent = foto.descripcion;
+            document.getElementById('lightbox-counter').textContent = `${index + 1} / ${filteredImages.length}`;
+            
+            generarThumbnails();
+        }
+        
+        // Teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+        
+        // Cerrar al hacer clic fuera
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+        
+        // Prevenir clic derecho en imágenes
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+        
+        // Prevenir arrastrar imágenes
+        document.addEventListener('dragstart', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+        
+        // Mobile Menu
+        function toggleDropdown(e) {
+            if (window.innerWidth <= 968) {
+                e.preventDefault();
+                const menu = e.currentTarget.nextElementSibling;
+                if (menu) menu.classList.toggle('show');
+            }
+        }
+        
+        function toggleMobileMenu() {
+            const nav = document.getElementById('navbar');
+            if (nav) nav.classList.toggle('active');
+        }
+        
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+            }
+        });
+        
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.main-header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255,255,255,0.95)';
+                    header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                } else {
+                    header.style.background = 'transparent';
+                    header.style.boxShadow = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

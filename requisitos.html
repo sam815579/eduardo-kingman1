@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admisiones - Unidad Educativa Eduardo Kingman Riofrío</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* VARIABLES */
+        :root {
+            --azul: #1E3A8A;
+            --azul-claro: #90D5FF;
+            --azul-principal: #2563EB;
+            --rojo: #DC2626;
+            --rojo-oscuro: #991B1B;
+            --verde-principal: #22C55E;
+            --verde-claro: #86EFAC;
+            --gris: #f5f5f5;
+            --gris-claro: #F3F4F6;
+            --gris-texto: #4B5563;
+            --gris-oscuro: #1F2937;
+            --blanco: #FFFFFF;
+            --naranja: #F97316;
+        }
+        
+        /* ================= HEADER (IGUAL AL INDEX) ================= */
+        .main-header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* LOGO */
+        .logo-box {
+            background: var(--blanco);
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-radius: 0 60px 60px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .logo-box img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            font-weight: 800;
+            color: var(--rojo);
+            font-size: 20px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+        
+        /* NAV AREA */
+        .nav-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .top-bar {
+            background: transparent;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1.5rem;
+            margin-right: 1rem;
+            margin-left: auto;
+        }
+        
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.7s;
+        }
+        
+        .top-bar a:hover {
+            color: var(--azul-claro);
+        }
+        
+        .top-bar .fab {
+            font-size: 1.1rem;
+        }
+        
+        .btn-contact {
+            background: var(--rojo);
+            padding: 8px 18px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-contact:hover {
+            background: var(--blanco);
+            color: var(--rojo);
+            transform: translateY(-2px);
+        }
+        
+        /* NAVBAR */
+        .navbar {
+            background: var(--blanco);
+            padding: 10px 25px;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            margin-right: 0;
+        }
+        
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .navbar a {
+            text-decoration: none;
+            color: var(--gris-oscuro);
+            font-weight: 700;
+            font-size: 13px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .navbar a:hover,
+        .navbar a.active {
+            background: var(--gris-claro);
+            color: var(--rojo);
+        }
+        
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--blanco);
+            min-width: 240px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            border: 2px solid var(--azul-claro);
+            overflow: hidden;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            padding: 12px 18px;
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            text-transform: none;
+            border-bottom: 1px solid var(--gris-claro);
+        }
+        
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a:hover {
+            background: linear-gradient(90deg, var(--azul-claro) 0%, var(--verde-claro) 100%);
+            color: var(--azul);
+            padding-left: 22px;
+        }
+        
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 1rem;
+        }
+        
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--blanco);
+        }
+        
+        /* ================= BANNER ADMISIONES ================= */
+        .admisiones-banner {
+            position: relative;
+            height: 500px;
+            background-image: url('visision-mision.png'); /* Tu imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .admisiones-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 100%);
+            z-index: 1;
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+        
+        .banner-content h1 {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .banner-content p {
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .banner-content i {
+            font-size: 60px;
+        }
+        
+        /* ================= CONTENIDO PRINCIPAL ================= */
+        .admisiones-container {
+            max-width: 1200px;
+            margin: -80px auto 50px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .welcome-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .welcome-text h2 {
+            color: #1e3c72;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .welcome-text p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .welcome-image {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .welcome-image img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+        
+        /* Sección de Requisitos */
+        .requisitos-section {
+            margin-top: 60px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: #1e3c72;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #8be28e);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .requisitos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .requisito-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .requisito-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .requisito-card:nth-child(1) .card-header {
+            background: linear-gradient(135deg, #667eea 100%);
+        }
+        
+        .requisito-card:nth-child(2) .card-header {
+            background: linear-gradient(135deg, #7cd87f 100%);
+        }
+        
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .card-header h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .card-header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        
+        .card-body {
+            padding: 30px;
+        }
+        
+        .requisito-list {
+            list-style: none;
+        }
+        
+        .requisito-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        .requisito-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .requisito-list i {
+            color: #4caf50;
+            font-size: 20px;
+            min-width: 24px;
+        }
+        
+        /* Info adicional */
+        .info-box {
+            background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .info-box h3 {
+            color: #1e3c72;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            color: #1e3c72;
+            font-weight: 600;
+        }
+        
+        .contact-item i {
+            font-size: 24px;
+            color: #667eea;
+        }
+        
+        /* Footer */
+        .main-footer {
+            background: linear-gradient(135deg, rgba(30,58,138,0.95) 0%, rgba(37,99,235,0.95) 100%);
+            color: var(--blanco);
+            padding: 4rem 0 1rem;
+            position: relative;
+            overflow: hidden;
+            clear: both;
+            margin-top: 1rem;
+            z-index: 10;
+        }
+        
+        .main-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('pie.png') center/cover no-repeat;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .main-footer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30,58,138,0.5);
+            z-index: 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 20px;
+        }
+        
+        .footer-col h4 {
+            color: var(--blanco);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--verde-claro);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-col ul li a {
+            color: var(--blanco);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: var(--verde-claro);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .mobile-toggle {
+                display: flex;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+                padding: 0 1rem;
+            }
+            
+            .logo-box {
+                width: 100%;
+                justify-content: center;
+                border-radius: 0 0 30px 30px;
+                margin-bottom: 1rem;
+            }
+            
+            .nav-area {
+                width: 100%;
+                align-items: center;
+            }
+            
+            .top-bar {
+                padding: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .navbar {
+                display: none;
+                width: 100%;
+                margin-right: 0;
+            }
+            
+            .navbar.active {
+                display: block;
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: 1px solid var(--gris-claro);
+                margin-top: 0.5rem;
+                display: none;
+            }
+            
+            .dropdown-menu.show {
+                display: flex;
+            }
+            
+            .banner-content h1 {
+                font-size: 36px;
+            }
+            
+            .banner-content p {
+                font-size: 18px;
+            }
+            
+            .welcome-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .requisitos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .banner-content h1 {
+                font-size: 28px;
+                flex-direction: column;
+            }
+            
+            .banner-content i {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER (IGUAL AL INDEX) -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-box">
+                <img src="logo-kingman.png" alt="Logo">
+                <div class="logo-text">EDUARDO<br>KINGMAN RIOFRÍO</div>
+            </div>
+            
+            <!-- Nav Area -->
+            <div class="nav-area">
+                <!-- Top Bar -->
+                <div class="top-bar">
+                    <a href="mailto:eduardo.kingman11@gmail.com">
+                        <i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com
+                    </a>
+                    <a href="https://www.facebook.com/share/1AYH7w3nQB/" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a class="btn-contact" href="#contacto">
+                        <i class="fas fa-envelope"></i> Contáctenos
+                    </a>
+                </div>
+                
+                <!-- Navbar -->
+                <div class="navbar" id="navbar">
+                    <ul>
+                        <li><a href="index.html">INICIO</a></li>
+                        <li class="dropdown">
+                            <a href="#" onclick="toggleDropdown(event)">
+                                QUIÉNES SOMOS <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#acerca">Acerca de Nosotros</a></li>
+                                <li><a href="index.html#mision-vision">Misión y Visión</a></li>
+                                <li><a href="principios-valores.html">Principios y Valores</a></li>
+                                <li><a href="metodologia.html">Metodología</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" onclick="toggleDropdown(event)">
+                                ACADÉMICO <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#niveles">Niveles Educativos</a></li>
+                                <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+                                <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+                                <li><a href="reglamento.html">Reglamento</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="galeria.html">GALERÍA</a></li>
+                        <li><a href="index.html#contacto">CONTACTO</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Mobile Toggle -->
+            <div class="mobile-toggle" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- BANNER ADMISIONES (SIN CARRUSEL) -->
+    <section class="admisiones-banner">
+        <div class="banner-content">
+            <h1>
+                <i class="fas fa-graduation-cap"></i>
+                ADMISIONES
+            </h1>
+            <p>Únete a nuestra familia educativa</p>
+        </div>
+    </section>
+    
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="admisiones-container">
+        <!-- Tarjeta de Bienvenida -->
+        <div class="welcome-card">
+            <div class="welcome-text">
+                <h2>¡Bienvenidos!</h2>
+                <p>
+                    Estamos emocionados de recibir a nuevos estudiantes en nuestra institución. 
+                    La Escuela Eduardo Kingman Riofrío te ofrece una educación integral de calidad, 
+                    con valores humanos y excelencia académica.
+                </p>
+                <p style="margin-top: 20px;">
+                    <i class="fas fa-heart" style="color: #d32f2f;"></i> 
+                    Forma parte de nuestra comunidad educativa y sé parte del cambio.
+                </p>
+            </div>
+            <div class="welcome-image">
+                <img src="image.png" alt="Estudiante feliz">
+            </div>
+        </div>
+        
+        <!-- Sección de Requisitos -->
+        <section class="requisitos-section">
+            <h2 class="section-title">
+                <i class="fas fa-clipboard-list"></i> Requisitos de Admisión
+            </h2>
+            
+            <div class="requisitos-grid">
+                <!-- Card Inicial -->
+                <div class="requisito-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3>Educación Inicial</h3>
+                        <p>Requisitos para nuevos ingresos</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="requisito-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Copia de cédula de identidad de los padres</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Copia de cédula de identidad del estudiante</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Copia del carnet de vacunación</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Card 2do a 10mo -->
+                <div class="requisito-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h3>2do a 10mo Año</h3>
+                        <p>Educación Básica Elemental a Superior</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="requisito-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Copia de cédula de los padres</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Copia de cédula del estudiante</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Certificado de no adeudar</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Certificado de matrículas anteriores</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Certificado de conducta</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Info Adicional -->
+            <div class="info-box">
+                <h3><i class="fas fa-info-circle"></i> Información Importante</h3>
+                <p>
+                    Para más información sobre el proceso de admisión, horarios de atención 
+                    o cualquier consulta, no dudes en contactarnos.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>eduardo.kingman11@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Lunes a Viernes: 08h00 a 13h00</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>El Salitre, Guayas - Ecuador</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="main-footer" id="contacto">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>QUIÉNES SOMOS</h4>
+                <ul>
+                    <li><a href="index.html#mision-vision">Misión y Visión</a></li>
+                    <li><a href="principios-valores.html">Nuestros Principios y Valores</a></li>
+                    <li><a href="index.html#acerca">Sobre Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>ACADÉMICO</h4>
+                <ul>
+                        <li><a href="index.html#niveles">Niveles Educativos</a></li>
+                        <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+                        <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <p><i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Atención: 08h00 a 13h00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Unidad Educativa Eduardo Kingman Riofrío. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Dropdown Mobile
+        function toggleDropdown(e) {
+            if (window.innerWidth <= 968) {
+                e.preventDefault();
+                const menu = e.currentTarget.nextElementSibling;
+                if (menu) menu.classList.toggle('show');
+            }
+        }
+        
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const nav = document.getElementById('navbar');
+            if (nav) nav.classList.toggle('active');
+        }
+        
+        // Cerrar dropdowns al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+            }
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.main-header');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255,255,255,0.95)';
+                    header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                } else {
+                    header.style.background = 'transparent';
+                    header.style.boxShadow = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

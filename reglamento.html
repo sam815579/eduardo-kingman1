@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reglamento Interno - Unidad Educativa Eduardo Kingman Riofrío</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 100px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+:root {
+  --azul: #1E3A8A;
+  --azul-claro: #90D5FF;
+  --azul-principal: #2563EB;
+  --rojo: #DC2626;
+  --rojo-oscuro: #991B1B;
+  --verde-principal: #22C55E;
+  --verde-claro: #86EFAC;
+  --gris: #f5f5f5;
+  --gris-claro: #F3F4F6;
+  --gris-texto: #4B5563;
+  --gris-oscuro: #1F2937;
+  --blanco: #FFFFFF;
+  --naranja: #F97316;
+  --amarillo: #FBBF24;
+}
+
+/* ================= HEADER ================= */
+.main-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.logo-box {
+  background: var(--blanco);
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: 0 60px 60px 0;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.logo-box img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-weight: 800;
+  color: var(--rojo);
+  font-size: 20px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.nav-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.top-bar {
+  background: transparent;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  margin-right: 1rem;
+  margin-left: auto;
+}
+
+.top-bar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+}
+
+.top-bar a:hover {
+  color: var(--azul-claro);
+}
+
+.btn-contact {
+  background: var(--rojo);
+  padding: 8px 18px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-contact:hover {
+  background: var(--blanco);
+  color: var(--rojo);
+  transform: translateY(-2px);
+}
+
+.navbar {
+  background: var(--blanco);
+  padding: 10px 25px;
+  border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  margin-right: 0;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--gris-oscuro);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  background: var(--gris-claro);
+  color: var(--rojo);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--blanco);
+  min-width: 240px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  border: 2px solid var(--azul-claro);
+  overflow: hidden;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  padding: 12px 18px;
+  color: var(--gris-oscuro);
+  font-size: 14px;
+  text-transform: none;
+  border-bottom: 1px solid var(--gris-claro);
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+  background: linear-gradient(90deg, var(--azul-claro) 0%, var(--verde-claro) 100%);
+  color: var(--azul);
+  padding-left: 22px;
+}
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.mobile-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--blanco);
+}
+
+/* ================= HERO INTERNO ================= */
+.page-hero {
+  min-height: 400px;
+  position: relative;
+  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-principal) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  overflow: hidden;
+  padding: 3rem 2rem;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('educacion.png') center/cover;
+  opacity: 0.15;
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  max-width: 900px;
+}
+
+.page-hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.page-hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+/* ================= CONTENIDO PRINCIPAL ================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.reglamento-section {
+  padding: 5rem 0;
+  background: var(--blanco);
+}
+
+.intro-box {
+  background: linear-gradient(135deg, #dbeafe 0%, #bbf7d0 100%);
+  padding: 3rem;
+  border-radius: 20px;
+  margin-bottom: 4rem;
+  border-left: 6px solid var(--azul-principal);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.intro-box h2 {
+  color: var(--azul);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.intro-box p {
+  line-height: 1.8;
+  color: var(--gris-texto);
+  text-align: justify;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--azul);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--gris-texto);
+  margin-bottom: 3rem;
+}
+
+/* Cards de normas */
+.normas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.norma-card {
+  background: var(--blanco);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border-top: 5px solid var(--azul-principal);
+  transition: all 0.3s;
+}
+
+.norma-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.norma-card:nth-child(2) {
+  border-top-color: var(--rojo);
+}
+
+.norma-card:nth-child(3) {
+  border-top-color: var(--verde-principal);
+}
+
+.norma-card:nth-child(4) {
+  border-top-color: var(--naranja);
+}
+
+.norma-card:nth-child(5) {
+  border-top-color: var(--amarillo);
+}
+
+.norma-card:nth-child(6) {
+  border-top-color: var(--azul-principal);
+}
+
+.norma-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--azul-principal), var(--azul-claro));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.norma-icon i {
+  font-size: 1.8rem;
+  color: white;
+}
+
+.norma-card:nth-child(2) .norma-icon {
+  background: linear-gradient(135deg, var(--rojo), #f87171);
+}
+
+.norma-card:nth-child(3) .norma-icon {
+  background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));
+}
+
+.norma-card:nth-child(4) .norma-icon {
+  background: linear-gradient(135deg, var(--naranja), #fbbf24);
+}
+
+.norma-card h3 {
+  color: var(--azul);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.norma-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.norma-card li {
+  padding: 0.6rem 0;
+  padding-left: 2rem;
+  position: relative;
+  color: var(--gris-texto);
+  line-height: 1.6;
+}
+
+.norma-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--verde-principal);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Horarios */
+.horarios-section {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  padding: 5rem 0;
+}
+
+.horarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.horario-card {
+  background: var(--blanco);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  border-left: 5px solid var(--azul-principal);
+}
+
+.horario-card h3 {
+  color: var(--azul);
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.horario-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--gris-claro);
+}
+
+.horario-item:last-child {
+  border-bottom: none;
+}
+
+.curso {
+  font-weight: 600;
+  color: var(--gris-oscuro);
+}
+
+.hora {
+  background: linear-gradient(135deg, var(--azul-principal), var(--azul-claro));
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Alertas importantes */
+.alerta-box {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-left: 6px solid var(--amarillo);
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.alerta-box.danger {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border-left-color: var(--rojo);
+}
+
+.alerta-box.success {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-left-color: var(--verde-principal);
+}
+
+.alerta-box h4 {
+  color: var(--gris-oscuro);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.alerta-box ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.alerta-box li {
+  padding: 0.5rem 0;
+  padding-left: 1.8rem;
+  position: relative;
+  color: var(--gris-texto);
+}
+
+.alerta-box li::before {
+  content: '⚠';
+  position: absolute;
+  left: 0;
+}
+
+/* Lista simple */
+.lista-simple {
+  background: var(--blanco);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  margin: 2rem 0;
+}
+
+.lista-simple h3 {
+  color: var(--azul);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.lista-simple ol {
+  padding-left: 1.5rem;
+  color: var(--gris-texto);
+}
+
+.lista-simple li {
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+}
+
+/* CTA */
+.cta-reglamento {
+  background: linear-gradient(135deg, var(--azul-principal) 0%, var(--rojo) 100%);
+  padding: 4rem 0;
+  text-align: center;
+  color: white;
+  margin-top: 3rem;
+}
+
+.cta-reglamento h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-reglamento p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background: var(--blanco);
+  color: var(--azul-principal);
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.cta-btn:hover {
+  background: var(--naranja);
+  color: var(--blanco);
+  transform: translateY(-3px);
+}
+
+/* ================= FOOTER ================= */
+.main-footer {
+  background: linear-gradient(135deg, rgba(30,58,138,0.95) 0%, rgba(37,99,235,0.95) 100%);
+  color: var(--blanco);
+  padding: 4rem 0 1rem;
+  position: relative;
+  overflow: hidden;
+  clear: both;
+  margin-top: 1rem;
+  z-index: 10;
+}
+
+.main-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('pie.png') center/cover no-repeat;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main-footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30,58,138,0.5);
+  z-index: 0;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-col h4 {
+  color: var(--blanco);
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-col h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--verde-claro);
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-col ul li a {
+  color: var(--blanco);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-col ul li a:hover {
+  opacity: 1;
+  color: var(--verde-claro);
+  padding-left: 5px;
+}
+
+.footer-contacto {
+  background: var(--naranja);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.footer-contacto h4 {
+  color: var(--blanco);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-contacto h4::after {
+  display: none;
+}
+
+.footer-contacto p {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .mobile-toggle {
+    display: flex;
+  }
+  
+  .header-container {
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+  
+  .logo-box {
+    width: 100%;
+    justify-content: center;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 1rem;
+  }
+  
+  .nav-area {
+    width: 100%;
+    align-items: center;
+  }
+  
+  .top-bar {
+    padding: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .navbar {
+    display: none;
+    width: 100%;
+    margin-right: 0;
+  }
+  
+  .navbar.active {
+    display: block;
+  }
+  
+  .navbar ul {
+    flex-direction: column;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: 1px solid var(--gris-claro);
+    margin-top: 0.5rem;
+    display: none;
+  }
+  
+  .dropdown-menu.show {
+    display: flex;
+  }
+  
+  .page-hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .normas-grid,
+  .horarios-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .norma-card {
+    padding: 1.5rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-box">
+      <img src="logo-kingman.png" alt="Logo">
+      <div class="logo-text">EDUARDO<br>KINGMAN RIOFRÍO</div>
+    </div>
+    
+    <div class="nav-area">
+      <div class="top-bar">
+        <a href="mailto:eduardo.kingman11@gmail.com">
+          <i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com
+        </a>
+        <a href="https://www.facebook.com/share/1AYH7w3nQB/" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a class="btn-contact" href="#contacto">
+          <i class="fas fa-envelope"></i> Contáctenos
+        </a>
+      </div>
+      
+      <nav class="navbar" id="navbar">
+        <ul>
+          <li><a href="index.html">INICIO</a></li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">
+              QUIÉNES SOMOS <i class="fas fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html#acerca">Acerca de Nosotros</a></li>
+              <li><a href="index.html#mision-vision">Misión y Visión</a></li>
+              <li><a href="principios-valores.html">Principios y Valores</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">
+              ACADÉMICO <i class="fas fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html#niveles">Niveles Educativos</a></li>
+              <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+              <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+              <li><a href="metodologia.html">Metodología</a></li>
+              <li><a href="reglamento.html">Reglamento</a></li>
+            </ul>
+          </li>
+          <li><a href="galeria.html">GALERÍA</a></li>
+          <li><a href="#contacto">CONTACTO</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="mobile-toggle" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1><i class="fas fa-clipboard-list"></i> Reglamento Interno</h1>
+    <p>Normas de convivencia y disciplina para una educación de excelencia</p>
+  </div>
+</section>
+
+<!-- INTRODUCCIÓN -->
+<section class="reglamento-section">
+  <div class="container">
+    <div class="intro-box">
+      <h2><i class="fas fa-info-circle"></i>Propósito del Reglamento</h2>
+      <p>
+        Con la finalidad de ofrecer un buen servicio educativo de calidad, se da a conocer a los padres de familia, 
+        tutores o quienes ejercen la patria potestad el siguiente <strong>REGLAMENTO</strong> con el objetivo de 
+        fomentar los valores de la responsabilidad, respeto, de la sana convivencia y de la disciplina.
+      </p>
+      <p>
+        Estos reglamentos, aunados a los conceptos académicos, hacen de nuestra comunidad educativa la opción por 
+        excelencia para ayudar a alcanzar los objetivos educativos del programa de educación inicial y general básica, 
+        los cuales entrarán en funciones a partir del primer día de clases de acuerdo al calendario oficial emitido 
+        por el ministerio de educación.
+      </p>
+    </div>
+
+    <!-- NORMAS GENERALES -->
+    <h2 class="section-title">
+      <i class="fas fa-gavel" style="color: var(--azul);"></i>
+      Normas Generales
+    </h2>
+    <p class="section-subtitle">Responsabilidades de los padres de familia</p>
+    
+    <div class="alerta-box success">
+      <h4><i class="fas fa-check-circle"></i> Es responsabilidad de los padres de familia:</h4>
+      <ul>
+        <li>Leer y firmar el reglamento</li>
+        <li>Hacer que éste se lleve a cabo</li>
+      </ul>
+    </div>
+
+    <!-- DISPOSICIONES -->
+    <h2 class="section-title" style="margin-top: 4rem;">
+      <i class="fas fa-door-open" style="color: var(--rojo);"></i>
+      Ingreso y Salida
+    </h2>
+    <p class="section-subtitle">Disposiciones sobre el ingreso y salida de estudiantes y docentes</p>
+    
+    <div class="normas-grid">
+      <div class="norma-card">
+        <div class="norma-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <h3>Horarios de Ingreso</h3>
+        <ul>
+          <li>Docentes: 06h45 a 06h55</li>
+          <li>Estudiantes: hasta las 07h15</li>
+          <li>Se cierra la puerta a las 7:15</li>
+          <li>Si llega tarde, debe esperar a la segunda hora</li>
+        </ul>
+      </div>
+      
+      <div class="norma-card">
+        <div class="norma-icon">
+          <i class="fas fa-user-check"></i>
+        </div>
+        <h3>Presentación Personal</h3>
+        <ul>
+          <li>Estudiante debe presentarse diariamente perfectamente aseado y uniformado</li>
+          <li>Corte de cabello tipo escolar</li>
+          <li>No se permite cabello largo en niños ni modelos con figuras</li>
+        </ul>
+      </div>
+      
+      <div class="norma-card">
+        <div class="norma-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>Entrega y Recogida</h3>
+        <ul>
+          <li>Padres dejan estudiantes en la puerta de acceso</li>
+          <li>No se permite ingresar a las aulas</li>
+          <li>Si no puede recoger al estudiante, enviar cédula con persona autorizada</li>
+          <li>Sin documentos, no se entrega al estudiante</li>
+        </ul>
+      </div>
+      
+      <div class="norma-card">
+        <div class="norma-icon">
+          <i class="fas fa-ban"></i>
+        </div>
+        <h3>Objetos Prohibidos</h3>
+        <ul>
+          <li>Juguetes</li>
+          <li>Objetos de valor (cadenas, pulseras, anillos)</li>
+          <li>Objetos peligrosos (navajas, objetos punzo cortantes, cerillos)</li>
+          <li>Prohibido compartir agua, alimentos y material</li>
+        </ul>
+      </div>
+      
+      <div class="norma-card">
+        <div class="norma-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3>Atrasos y Faltas</h3>
+        <ul>
+          <li>Tres atrasos = 1 falta</li>
+          <li>Tareas atrasadas sin justificación: revisadas sobre 7</li>
+          <li>Con justificación válida: revisadas sobre 10</li>
+          <li>Reincidencia: calificación 0</li>
+        </ul>
+      </div>
+      
+      <div class="norma-card">
+        <div class="norma-icon">
+          <i class="fas fa-tshirt"></i>
+        </div>
+        <h3>Uniforme y Apariencia</h3>
+        <ul>
+          <li>Uniforme deportivo: días de Cultura Física</li>
+          <li>Niñas: cabello recogido</li>
+          <li>No cabello tinturado con colores inadecuados</li>
+          <li>No uñas acrílicas ni pintadas</li>
+          <li>Máximo 1 arete por oreja</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- HORARIOS DE RECESO -->
+    <h2 class="section-title" style="margin-top: 4rem;">
+      <i class="fas fa-coffee" style="color: var(--naranja);"></i>
+      Horarios de Receso
+    </h2>
+    <p class="section-subtitle">Horario de refrigerio por curso</p>
+    
+    <div class="horarios-grid">
+      <div class="horario-card">
+        <h3><i class="fas fa-baby"></i> Inicial #1</h3>
+        <div class="horario-item">
+          <span class="curso">Recreo</span>
+          <span class="hora">9:00 - 9:15</span>
+        </div>
+      </div>
+      
+      <div class="horario-card">
+        <h3><i class="fas fa-child"></i> Inicial #2</h3>
+        <div class="horario-item">
+          <span class="curso">Recreo</span>
+          <span class="hora">9:15 - 9:30</span>
+        </div>
+      </div>
+      
+      <div class="horario-card">
+        <h3><i class="fas fa-running"></i> Preparatoria y 2do</h3>
+        <div class="horario-item">
+          <span class="curso">Recreo</span>
+          <span class="hora">9:30 - 9:45</span>
+        </div>
+      </div>
+      
+      <div class="horario-card">
+        <h3><i class="fas fa-book-reader"></i> 3ro y 4to</h3>
+        <div class="horario-item">
+          <span class="curso">Recreo</span>
+          <span class="hora">9:45 - 10:15</span>
+        </div>
+      </div>
+      
+      <div class="horario-card">
+        <h3><i class="fas fa-graduation-cap"></i> 5to, 6to y 7mo</h3>
+        <div class="horario-item">
+          <span class="curso">Recreo</span>
+          <span class="hora">10:20 - 10:40</span>
+        </div>
+      </div>
+      
+      <div class="horario-card">
+        <h3><i class="fas fa-user-graduate"></i> 8vo, 9no y 10mo</h3>
+        <div class="horario-item">
+          <span class="curso">Recreo</span>
+          <span class="hora">10:55 - 11:10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HORARIOS DE SALIDA -->
+    <h2 class="section-title" style="margin-top: 3rem;">
+      <i class="fas fa-home" style="color: var(--verde-principal);"></i>
+      Horarios de Salida
+    </h2>
+    <p class="section-subtitle">Hora de salida por curso</p>
+    
+    <div class="horarios-grid">
+      <div class="horario-card" style="border-left-color: var(--verde-principal);">
+        <h3><i class="fas fa-baby"></i> Inicial #1</h3>
+        <div class="horario-item">
+          <span class="curso">Salida</span>
+          <span class="hora" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">11:00</span>
+        </div>
+      </div>
+      
+      <div class="horario-card" style="border-left-color: var(--verde-principal);">
+        <h3><i class="fas fa-child"></i> Inicial #2</h3>
+        <div class="horario-item">
+          <span class="curso">Salida</span>
+          <span class="hora" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">11:30</span>
+        </div>
+      </div>
+      
+      <div class="horario-card" style="border-left-color: var(--verde-principal);">
+        <h3><i class="fas fa-running"></i> Preparatoria</h3>
+        <div class="horario-item">
+          <span class="curso">Salida</span>
+          <span class="hora" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">12:00</span>
+        </div>
+      </div>
+      
+      <div class="horario-card" style="border-left-color: var(--verde-principal);">
+        <h3><i class="fas fa-book"></i> Segundo</h3>
+        <div class="horario-item">
+          <span class="curso">Salida</span>
+          <span class="hora" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">12:10</span>
+        </div>
+      </div>
+      
+      <div class="horario-card" style="border-left-color: var(--verde-principal);">
+        <h3><i class="fas fa-book"></i> Tercero</h3>
+        <div class="horario-item">
+          <span class="curso">Salida</span>
+          <span class="hora" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">12:30</span>
+        </div>
+      </div>
+      
+      <div class="horario-card" style="border-left-color: var(--verde-principal);">
+        <h3><i class="fas fa-book"></i> Cuarto</h3>
+        <div class="horario-item">
+          <span class="curso">Salida</span>
+          <span class="hora" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">12:35</span>
+        </div>
+      </div>
+      
+      <div class="horario-card" style="border-left-color: var(--verde-principal);">
+        <h3><i class="fas fa-book-open"></i> Quinto</h3>
+        <div class="horario-item">
+          <span class="curso">Salida</span>
+          <span class="hora" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">12:40</span>
+        </div>
+      </div>
+      
+      <div class="horario-card" style="border-left-color: var(--verde-principal);">
+        <h3><i class="fas fa-book-open"></i> Sexto y Séptimo</h3>
+        <div class="horario-item">
+          <span class="curso">Salida</span>
+          <span class="hora" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">12:45</span>
+        </div>
+      </div>
+      
+      <div class="horario-card" style="border-left-color: var(--verde-principal);">
+        <h3><i class="fas fa-graduation-cap"></i> 8vo, 9no y 10mo</h3>
+        <div class="horario-item">
+          <span class="curso">Salida</span>
+          <span class="hora" style="background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));">12:50</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVALUACIONES -->
+    <div class="lista-simple">
+      <h3><i class="fas fa-star"></i> Evaluaciones y Observaciones</h3>
+      <ol>
+        <li>Cuando la niña o niño lleve a su casa alguna notita, así como cualquier trabajo que ella realice, 
+        por favor prestarle la debida atención, ya que esto significa mucho para ella o él.</li>
+        <li>En la primera reunión que se realiza al iniciar el año escolar, ayudamos a los padres a conocer 
+        la forma de trabajo de la educadora y a reconocer las capacidades y necesidades del grupo y de cada niño. 
+        También es un momento para ver la adaptación de cada uno en su nuevo ambiente.</li>
+      </ol>
+    </div>
+
+    <!-- JUSTIFICANTES -->
+    <div class="alerta-box">
+      <h4><i class="fas fa-file-alt"></i> Los Justificantes</h4>
+      <p>
+        Los inspectores reciben los justificantes por inasistencia a clases, únicamente el día correspondiente 
+        o al día siguiente de la falta, presentando el certificado médico o la justificación escrita por los 
+        padres de familia con la debida explicación.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-reglamento">
+  <div class="container">
+    <h2>¿Tienes dudas sobre el reglamento?</h2>
+    <p>Estamos aquí para ayudarte. Contáctanos para cualquier consulta</p>
+    <a href="index.html#contacto" class="cta-btn">
+      <i class="fas fa-envelope"></i> Contactar
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="main-footer" id="contacto">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>QUIÉNES SOMOS</h4>
+        <ul>
+          <li><a href="index.html#mision-vision">Misión y Visión</a></li>
+          <li><a href="principios-valores.html">Nuestros Principios y Valores</a></li>
+          <li><a href="index.html#acerca">Sobre Nosotros</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>ACADÉMICO</h4>
+        <ul>
+          <li><a href="index.html#niveles">Niveles Educativos</a></li>
+          <li><a href="requisitos.html">Requisitos de Matrícula</a></li>
+          <li><a href="uniforme.html">Uso Adecuado del Uniforme</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <div class="footer-contacto">
+          <h4>¿Tienes alguna pregunta?</h4>
+          <p><i class="fas fa-envelope"></i> eduardo.kingman11@gmail.com</p>
+          <p><i class="fas fa-clock"></i> Atención: 08h00 a 13h00</p>
+          <p><i class="fas fa-map-marker-alt"></i> Salitre, Guayas - Ecuador</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Unidad Educativa Eduardo Kingman Riofrío. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Dropdown Mobile
+function toggleDropdown(e) {
+  if (window.innerWidth <= 968) {
+    e.preventDefault();
+    const menu = e.currentTarget.nextElementSibling;
+    if (menu) menu.classList.toggle('show');
+  }
+}
+
+// Mobile Menu
+function toggleMobileMenu() {
+  const nav = document.getElementById('navbar');
+  if (nav) nav.classList.toggle('active');
+}
+
+// Cerrar dropdowns al hacer clic fuera
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+  }
+});
+
+// Header scroll effect
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('.main-header');
+  if (header) {
+    if (window.scrollY > 100) {
+      header.style.background = 'rgba(255,255,255,0.95)';
+      header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+    } else {
+      header.style.background = 'transparent';
+      header.style.boxShadow = 'none';
+    }
+  }
+});
+</script>
+
+</body>
+</html>
